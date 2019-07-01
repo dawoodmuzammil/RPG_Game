@@ -1,0 +1,11 @@
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\bin\Debug\netcoreapp2.0\RPG_Game.deps.json
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\bin\Debug\netcoreapp2.0\RPG_Game.runtimeconfig.json
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\bin\Debug\netcoreapp2.0\RPG_Game.runtimeconfig.dev.json
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\bin\Debug\netcoreapp2.0\RPG_Game.dll
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\bin\Debug\netcoreapp2.0\RPG_Game.pdb
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.csprojAssemblyReference.cache
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.csproj.CoreCompileInputs.cache
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.AssemblyInfoInputs.cache
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.AssemblyInfo.cs
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.dll
+E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\obj\Debug\netcoreapp2.0\RPG_Game.pdb
