@@ -6,13 +6,19 @@ namespace RPG_Game
     {
         static void Main(string[] args)
         {
-            Aladin warrior = new Aladin();
-            Console.WriteLine(warrior.HpValue);
-            Console.WriteLine(warrior.Level);
-            Console.WriteLine(warrior.MaxAttackValue);
-            Console.WriteLine(warrior.MaxDefenseValue);
-            warrior.Attack();
-            warrior.Defend();
+            //Aladin warrior = new Aladin();
+            //Console.WriteLine(warrior.HpValue);
+            //Console.WriteLine(warrior.Level);
+            //Console.WriteLine(warrior.MaxAttackValue);
+            //Console.WriteLine(warrior.MaxDefenseValue);
+            //warrior.Attack();
+            //warrior.Defend();
+
+            Player newPlayer = new Player("dawood");
+            newPlayer.InsertPlayer();
+            newPlayer.DeleteAllPlayers();
+
+            //dawood.IsUsernameTaken("dawood");
 
             Console.ReadLine();
         }

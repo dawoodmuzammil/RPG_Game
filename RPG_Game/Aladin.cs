@@ -50,7 +50,7 @@ namespace RPG_Game
 
         public int GenieHelp( int CurAttackValue)
         {
-            return curAttackValue + RandomNumber(10);
+            return CurAttackValue + RandomNumber(10);
         }
 
         public override void Attack()
@@ -76,9 +76,9 @@ namespace RPG_Game
             return 0;
         }
 
-        public void StealPower( CurAttackValue)
+        public void StealPower( int CurAttackValue)
         {
-            this.HpValue += CurAttackValue;
+            this.HpValue += CurAttackValue;           
         }
 
         //public void Attack() {
