@@ -14,9 +14,10 @@ namespace RPG_Game
             //warrior.Attack();
             //warrior.Defend();
 
-            Player newPlayer = new Player("dawood");
-            newPlayer.InsertPlayer();
-            newPlayer.DeleteAllPlayers();
+            Game game = new Game();
+
+            //Player newPlayer = new Player("dawood");
+            
 
             //dawood.IsUsernameTaken("dawood");
 
