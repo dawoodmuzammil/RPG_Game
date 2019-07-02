@@ -11,7 +11,8 @@ namespace RPG_Game
         //public int MaxDefenseValue { get; set; }
         //public int ExpPoints { get; set; }
         //public int Level { get; set; }
-
+        string[] AttackSkills;
+        string[] DefenseSkills;
 
         public Aladin()
         {
@@ -20,7 +21,17 @@ namespace RPG_Game
             //MaxDefenseValue = CalculateMaxMoveValue(Level);
             MaxAttackValue = CalculateMaxMoveValue( aladin.Level);
             MaxDefenseValue = CalculateMaxMoveValue(aladin.Level);
-            
+
+            AttackSkills = new string[2] {            
+                "genieHelp",
+                "powerPunch"
+            };
+
+            DefenseSkills = new string[2] {
+                "stealPower",
+                "duck"
+            };
+
             Console.WriteLine("--- Creation of ALADIN successful.");
         }
 
@@ -30,14 +41,54 @@ namespace RPG_Game
             return bestVal;
         }
 
-        public void Attack() {
-            int AttackValue = RandomNumber( MaxAttackValue);
+
+        // ATTACK METHODS
+        public double PowerPunch(int CurAttackValue)
+        {
+            return CurAttackValue * 1.5;
+        }
+
+        public int GenieHelp( int CurAttackValue)
+        {
+            return curAttackValue + RandomNumber(10);
+        }
+
+        public override void Attack()
+        {
+            int AttackValue = RandomNumber(MaxAttackValue);
+            String SkillOption = AttackSkills[RandomNumber(1)];
+            Console.WriteLine(SkillOption + " implemented . . . ");
+            
+            if ( SkillOption.ToLower().Equals("geniehelp"))
+            {
+                AttackValue = GenieHelp(AttackValue);
+            }
+            else if (SkillOption.ToLower().Equals("powerpunch")) {
+                AttackValue = (int) PowerPunch(AttackValue);
+            }
+
             Console.WriteLine("Attack ---> " + AttackValue);
         }
-        public void Defend() {
-            int DefenseValue = RandomNumber(MaxDefenseValue);
-            Console.WriteLine("Defense ---> " + DefenseValue);
+
+        // DEFENSE METHODS
+        public int Duck( int CurAttackValue)
+        {
+            return 0;
         }
+
+        public void StealPower( CurAttackValue)
+        {
+            this.HpValue += CurAttackValue;
+        }
+
+        //public void Attack() {
+        //    int AttackValue = RandomNumber( MaxAttackValue);
+        //    Console.WriteLine("Attack ---> " + AttackValue);
+        //}
+        //public void Defend() {
+        //    int DefenseValue = RandomNumber(MaxDefenseValue);
+        //    Console.WriteLine("Defense ---> " + DefenseValue);
+        //}
         //public void Attack() { };
     }
 }
