@@ -35,10 +35,15 @@ namespace RPG_Game
 
             if ( input == 1)
             {
-                p1.Character.Attack();
+                int attackValue = p1.Character.Attack();
+                int defenseValue = p2.Character.Defend(attackValue);
+                int effectiveness = attackValue - defenseValue;
+
+                p2.Character.HpValue -= effectiveness;
                 Console.WriteLine("====================");
                 Console.WriteLine("==== HP STATUS =====");
                 Console.WriteLine("====================");
+                
                 Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
                 Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
 

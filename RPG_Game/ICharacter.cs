@@ -7,8 +7,8 @@ namespace RPG_Game
     interface ICharacter
     {    
         // methods
-        void Attack();
-        void Defend( int enemyAttackValue);        
+        int Defend( int enemyAttackValue);        
+        int Attack();
         int CalculateMaxMoveValue( int Level);  
     }
 }

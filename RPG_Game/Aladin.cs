@@ -45,7 +45,7 @@ namespace RPG_Game
 
 
         // ATTACK METHODS
-        public override void Attack()
+        public override int Attack()
         {
             int attackValue = GenerateRandomNumber(MaxAttackValue);
             String SkillOption = AttackSkills[GenerateRandomNumber(1)];
@@ -54,15 +54,15 @@ namespace RPG_Game
             if (SkillOption.ToLower().Equals("geniehelp"))
             {
                 attackValue = GenieHelp( attackValue);
-                this.HpValue -= attackValue;
+                
             }
             else if (SkillOption.ToLower().Equals("powerpunch"))
             {
                 attackValue = (int)PowerPunch( attackValue);
-                this.HpValue -= attackValue;
             }
 
             Console.WriteLine("Attack ---> " + attackValue);
+            return attackValue;
         }
 
         public double PowerPunch(int curAttackValue)
@@ -78,7 +78,7 @@ namespace RPG_Game
 
 
         // DEFENSE METHODS
-        public override void Defend( int enemyAttackValue)
+        public override int Defend( int enemyAttackValue)
         {
             int DefendValue = GenerateRandomNumber(MaxAttackValue);
             String SkillOption = AttackSkills[GenerateRandomNumber(1)];
@@ -87,13 +87,15 @@ namespace RPG_Game
             if (SkillOption.ToLower().Equals("duck"))
             {
                 DefendValue = Duck(enemyAttackValue);
+                Console.WriteLine("Defense ---> " + DefendValue);
+                return DefendValue;
             }
             else if (SkillOption.ToLower().Equals("stealpower"))
             {
                 StealPower(enemyAttackValue);
             }
 
-            Console.WriteLine("Defense ---> " + DefendValue);
+            return 0;
         }
 
         public int Duck( int curAttackValue)

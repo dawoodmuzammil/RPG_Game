@@ -8,9 +8,10 @@ namespace RPG_Game
     {
         // properties        
         private int HpVal = 100;
+        //private int HpVal = 100;
         public int HpValue
         {
-            get { return HpVal = 100; }
+            get { return HpVal; }
             set { HpVal = value; }
         }
 
@@ -68,15 +69,18 @@ namespace RPG_Game
             return random.Next(0, max);
         }
 
-        public virtual void Attack()
+        public virtual int Attack()
         {
-            int AttackValue = GenerateRandomNumber(MaxAttackValue);
-            Console.WriteLine("Attack ---> " + AttackValue);
+            int attackValue = GenerateRandomNumber(MaxAttackValue);
+            Console.WriteLine("Attack ---> " + attackValue);
+            return attackValue;
         }
-        public virtual void Defend( int enemyAttackValue)
+        public virtual int Defend( int enemyAttackValue)
         {
-            int DefenseValue = GenerateRandomNumber(MaxDefenseValue);
-            Console.WriteLine("Defense ---> " + DefenseValue);
+            int defenseValue = GenerateRandomNumber(MaxDefenseValue);
+            Console.WriteLine("Defense ---> " + defenseValue);
+
+            return defenseValue;
         }
 
         public bool IsLost( int CurrentHP)
