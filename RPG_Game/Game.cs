@@ -60,7 +60,7 @@ namespace RPG_Game
             List<string> lines = File.ReadAllLines(filepath).ToList();
             string str = username + "," + "0";
 
-            if (!IsUsernameTaken(username, lines) && lines.Count == 0) // if username is unique
+            if (!IsUsernameTaken(username, lines) || lines.Count == 0) // if username is unique
             {
                 lines.Add(str);
 
