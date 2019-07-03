@@ -48,7 +48,7 @@ namespace RPG_Game
         public override int Attack()
         {
             int attackValue = GenerateRandomNumber(MaxAttackValue);
-            String SkillOption = AttackSkills[GenerateRandomNumber(1)];
+            String SkillOption = AttackSkills[GenerateRandomNumber(2)];
             Console.WriteLine(SkillOption + " implemented . . . ");
 
             if (SkillOption.ToLower().Equals("geniehelp"))

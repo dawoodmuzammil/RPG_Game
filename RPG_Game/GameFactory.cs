@@ -32,6 +32,7 @@ namespace RPG_Game
             string username = GetUsername(); // get username from user
             Character userCharacter = GetUserCharacter();
             player = new Player(username, userCharacter); // create user's player
+            fileManager.InsertPlayerJSON( player);
 
             CPU = new Player(); // create CPU player
 
@@ -52,14 +53,15 @@ namespace RPG_Game
         {
             Console.Write("Please write your username: ");
             string username = Console.ReadLine();
-            bool isValid = fileManager.InsertPlayer(username);
+            //bool isValid = fileManager.InsertPlayer(username);
             
-            while ( !isValid) {
-                Console.Write("\nPlease enter a different username: ");
-                username = Console.ReadLine();
-                isValid = fileManager.InsertPlayer(username);
+            //while ( !isValid) {
+            //    Console.Write("\nPlease enter a different username: ");
+            //    username = Console.ReadLine();
+            //    isValid = fileManager.InsertPlayer(username);
 
-            } 
+            //}
+            
             return username;
         }
 

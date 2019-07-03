@@ -7,25 +7,42 @@ namespace RPG_Game
     public class Battle
     {
         // properties
+        FileManager fileManager;
+        
         public Battle( Player p1, Player p2)
         {
-            StartFight( p1, p2);
+            fileManager = new FileManager();
+            Fight( p1, p2);
         }
 
         // constructor
-        public void StartFight( Player p1, Player p2)
+        public void Fight( Player p1, Player p2)
         {
             int turnTemp = GenerateRandomNumber(1);
             bool turn = true;
             if (turnTemp == 1)
                 turn = false;
-            PrintTurnStatus(p1, p2, turn);
+            while (p1.Character.HpValue > 0)
+            {
+                PrintTurnStatus(p1, p2, turn);
+                if (turn)
+                {
+                    turn = !turn;
+                    AttackByUser(p1, p2);
+                    
+                }
+                else
+                {
+                    turn = !turn;
+                    AttackByCPU(p1, p2);
+                }
+                fileManager.InsertPlayerJSON(p1);
+            }
 
             //Console.WriteLine("HEALTH VALUE ---> " + p1.Character.HpValue);
-            AttackCPU(p1, p2);
         }
 
-        public void AttackCPU( Player p1, Player p2)
+        public void AttackByUser( Player p1, Player p2)
         {
             Console.WriteLine("1. Attack");
             Console.WriteLine("0. Forfeit Match");
@@ -35,6 +52,7 @@ namespace RPG_Game
 
             if ( input == 1)
             {
+                
                 int attackValue = p1.Character.Attack();
                 int defenseValue = p2.Character.Defend(attackValue);
                 int effectiveness = attackValue - defenseValue;
@@ -64,7 +82,7 @@ namespace RPG_Game
         }
 
         // method where CPU attacks the player
-        public void AttackPlayer( Player p1, Player p2)
+        public void AttackByCPU( Player p1, Player p2)
         {
             int attackValue = p2.Character.Attack();
             int defenseValue = p1.Character.Defend(attackValue);
@@ -89,7 +107,7 @@ namespace RPG_Game
         public void Spawn(Player p1)
         {
             Player spawnedPlayer = new Player(); // create CPU player
-            StartFight( p1, spawnedPlayer);
+            Fight( p1, spawnedPlayer);
         }
 
 
