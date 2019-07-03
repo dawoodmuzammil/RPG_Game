@@ -46,8 +46,30 @@ namespace RPG_Game
             
         }
 
-        // methods     
-        
+        public Player()
+        {
+            this.usernameProp = "CPU_" + GenerateRandomName();
+            this.pointsProp = 0;
+            _character = new Aladin();
+        }
+
+        // methods
+
+        public int GenerateRandomNumber(int max)
+        {
+            Random random = new Random();
+            return random.Next(0, max);
+        }
+
+        public string GenerateRandomName()
+        {
+            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\randomNames.txt";
+
+            List<string> lines = File.ReadAllLines(filepath).ToList();
+            int rand = GenerateRandomNumber(lines.Count);
+
+            return lines[rand];
+        }
         ///*
         // * Method to insert a player in the text file
         // */ 
@@ -92,7 +114,7 @@ namespace RPG_Game
         //                name += username[i];                    
         //            i++; // increment counter
         //        }
-                
+
         //        // check the name from file with the entered username
         //        if ( name.Equals(username)) {                    
         //            return false;

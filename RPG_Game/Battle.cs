@@ -22,10 +22,10 @@ namespace RPG_Game
             PrintTurnStatus(p1, p2, turn);
 
             //Console.WriteLine("HEALTH VALUE ---> " + p1.Character.HpValue);
-            GetMoveOption(p1, p2);
+            AttackCPU(p1, p2);
         }
 
-        public void GetMoveOption( Player p1, Player p2)
+        public void AttackCPU( Player p1, Player p2)
         {
             Console.WriteLine("1. Attack");
             Console.WriteLine("0. Forfeit Match");
@@ -47,6 +47,11 @@ namespace RPG_Game
                 Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
                 Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
 
+                if (p2.Character.IsLost(p2.Character.HpValue)) // checking if CPU's HP is less than 0
+                {
+                    Spawn(p1);
+                }
+
             }
             else if ( input == 0)
             {
@@ -56,6 +61,35 @@ namespace RPG_Game
             {
                 Console.WriteLine("Invalid choice.");
             }
+        }
+
+        // method where CPU attacks the player
+        public void AttackPlayer( Player p1, Player p2)
+        {
+            int attackValue = p2.Character.Attack();
+            int defenseValue = p1.Character.Defend(attackValue);
+            int effectiveness = attackValue - defenseValue;
+
+            p1.Character.HpValue -= effectiveness;
+            Console.WriteLine("====================");
+            Console.WriteLine("==== HP STATUS =====");
+            Console.WriteLine("====================");
+
+            Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
+            Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
+
+            if (p1.Character.IsLost(p1.Character.HpValue)) // checking if CPU's HP is less than 0
+            {
+                Console.WriteLine("G A M E  O V E R");
+            }
+        }
+
+        
+
+        public void Spawn(Player p1)
+        {
+            Player spawnedPlayer = new Player(); // create CPU player
+            StartFight( p1, spawnedPlayer);
         }
 
 
