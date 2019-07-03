@@ -8,7 +8,7 @@ namespace RPG_Game
     {    
         // methods
         void Attack();
-        void Defend();        
+        void Defend( int enemyAttackValue);        
         int CalculateMaxMoveValue( int Level);  
     }
 }

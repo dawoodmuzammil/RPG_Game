@@ -23,16 +23,27 @@ namespace RPG_Game
             set { pointsProp = value; }
         }
 
+        private Character _character;
+
+        public Character Character
+        {
+            get { return _character; }
+            set { _character = value; }
+        }
+
+
         //private string filepathProp = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\players.txt";
         //public string filepath { get; private set; }
 
 
 
         // constructor
-        public Player( string username)
+        public Player( string username, Character character)
         {          
             this.usernameProp = username;
             this.pointsProp = 0;
+            _character = character;
+            
         }
 
         // methods     

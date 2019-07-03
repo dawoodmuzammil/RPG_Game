@@ -14,7 +14,7 @@ namespace RPG_Game
             //warrior.Attack();
             //warrior.Defend();
 
-            Game game = new Game();
+            GameFactory game = new GameFactory();
 
             //Player newPlayer = new Player("dawood");
             

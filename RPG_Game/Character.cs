@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RPG_Game
 {
-    public class Character : ICharacter
+    public abstract class Character : ICharacter
     {
         // properties        
         private int HpVal = 100;
@@ -28,16 +28,23 @@ namespace RPG_Game
             set { ExpVal = value; }
         }
 
+        private string _charName;
+        public string CharName
+        {
+            get { return _charName; }
+            set { _charName = value; }
+        }
+
         public int MaxAttackValue { get; set; }
         public int MaxDefenseValue { get; set; }
 
-        public Character()
-        {
-            this.HpValue = 100;
-            this.Level = 1;
-            this.ExpPoints = 0;
+        //public Character()
+        //{
+        //    this.HpValue = 100;
+        //    this.Level = 1;
+        //    this.ExpPoints = 0;
 
-        }
+        //}
         public void UpdateExpPoints( int Val)
         {
             ExpPoints = Val + ExpPoints;
@@ -55,7 +62,7 @@ namespace RPG_Game
             HpValue = Val + HpValue;
         }
 
-        public int RandomNumber( int max)
+        public int GenerateRandomNumber( int max)
         {
             Random random = new Random();
             return random.Next(0, max);
@@ -63,12 +70,12 @@ namespace RPG_Game
 
         public virtual void Attack()
         {
-            int AttackValue = RandomNumber(MaxAttackValue);
+            int AttackValue = GenerateRandomNumber(MaxAttackValue);
             Console.WriteLine("Attack ---> " + AttackValue);
         }
-        public void Defend()
+        public virtual void Defend( int enemyAttackValue)
         {
-            int DefenseValue = RandomNumber(MaxDefenseValue);
+            int DefenseValue = GenerateRandomNumber(MaxDefenseValue);
             Console.WriteLine("Defense ---> " + DefenseValue);
         }
 
