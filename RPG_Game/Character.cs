@@ -8,7 +8,6 @@ namespace RPG_Game
     {
         // properties        
         private int HpVal = 100;
-        //private int HpVal = 100;
         public int HpValue
         {
             get { return HpVal; }
@@ -39,13 +38,9 @@ namespace RPG_Game
         public int MaxAttackValue { get; set; }
         public int MaxDefenseValue { get; set; }
 
-        //public Character()
-        //{
-        //    this.HpValue = 100;
-        //    this.Level = 1;
-        //    this.ExpPoints = 0;
+        public string[] AttackSkills { get; set; }
+        public string[] DefenseSkills { get; set; }
 
-        //}
         public void UpdateExpPoints( int Val)
         {
             ExpPoints = Val + ExpPoints;

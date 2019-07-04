@@ -17,7 +17,7 @@ namespace RPG_Game
         public GameFactory()
         {
             fileManager = new FileManager();
-            InitializeGame();
+            ShowMainMenu();
         }
 
         // METHODS
@@ -25,18 +25,18 @@ namespace RPG_Game
         // ============================================ //
         //              INITIALIZING GAME               //
         // ============================================ //
-        public void InitializeGame()
+        public void InitializeNewGame()
         {
-            Console.WriteLine("Initializing game. Please wait...");
+
+            Console.WriteLine("Initializing new game. Please wait...");
 
             string username = GetUsername(); // get username from user
             Character userCharacter = GetUserCharacter();
             player = new Player(username, userCharacter); // create user's player
-            fileManager.InsertPlayerJSON( player);
+            fileManager.InsertPlayerJSON(player, false);
 
             CPU = new Player(); // create CPU player
-
-
+            fileManager.InsertPlayerJSON(CPU, true);
 
             //Console.WriteLine("Game Set up. You are playing against " + CPU.username);
             Console.WriteLine("THE GAME IS SET!!");
@@ -46,6 +46,44 @@ namespace RPG_Game
             Battle battle = new Battle( player, CPU);
         }
 
+        public void ShowMainMenu()
+        {
+
+            int input;
+            do
+            {
+                Console.WriteLine("Welcome to Borda RPG Game.\nPlease select one of the options below:\n\n1. New Game\n2. Load Game\n3. Quit Game\n");
+                Console.Write("Your choice: ");
+                input = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine();
+
+                switch(input)
+                {
+                    case (1):
+                        InitializeNewGame();
+                        break;
+                    case (2):
+                        LoadGame();
+                        break;
+                    case (3):
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please enter your desired option again.\n");
+                        break;
+                }
+            } while (input != 3);
+
+
+        }
+
+        public void LoadGame()
+        {
+            Player[] arr = fileManager.LoadPlayerJSON(); // load both player
+            Battle battle = new Battle(arr[0], arr[1]);
+        }
+
         /*
          * Method to get username from user
          */
@@ -53,14 +91,6 @@ namespace RPG_Game
         {
             Console.Write("Please write your username: ");
             string username = Console.ReadLine();
-            //bool isValid = fileManager.InsertPlayer(username);
-            
-            //while ( !isValid) {
-            //    Console.Write("\nPlease enter a different username: ");
-            //    username = Console.ReadLine();
-            //    isValid = fileManager.InsertPlayer(username);
-
-            //}
             
             return username;
         }

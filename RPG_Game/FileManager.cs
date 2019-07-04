@@ -78,12 +78,43 @@ namespace RPG_Game
         //    string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\players.txt";
         //    System.IO.File.WriteAllText(filepath, string.Empty);
         //}
-
-        public void InsertPlayerJSON( Player player)
+        /*
+         * This method saves the created players in the JSON files. The boolean parameter differentiates 
+         * the CPU from the user to save different type of players in their respective paths.
+         */ 
+        public void InsertPlayerJSON( Player player, bool CPU)
         {
-            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
+            string filepath = "";
+            if (CPU)
+                filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
+            else
+                filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
             string strJSON = JsonConvert.SerializeObject(player);
             File.WriteAllText(filepath, strJSON);
+        }
+
+        public Player[] LoadPlayerJSON()
+        {
+            Console.WriteLine("Loading game...");
+
+            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
+            string jsonOutput = File.ReadAllText(filepath);
+            Player player = JsonConvert.DeserializeObject<Player>(jsonOutput);
+
+            string filepathCPU = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
+            string jsonOutputCPU = File.ReadAllText(filepathCPU);
+            Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU);
+
+            Console.WriteLine("Game loaded successfully. Here's the summary.\n");
+            Console.WriteLine("Player 1: " + player.username + "\nPoints: " + player.Points+ "\nHealth: " + player.Character.HpValue);
+            Console.WriteLine("\nCPU: " + CPU.username + "\nPoints: " + CPU.Points+ "\nHealth: " + CPU.Character.HpValue);
+            Player[] playerArr = new Player[2];
+            playerArr[0] = player;
+            playerArr[1] = CPU;
+
+            return playerArr;
+
+
         }
     }
 }

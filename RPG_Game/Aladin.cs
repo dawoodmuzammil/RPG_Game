@@ -6,20 +6,8 @@ namespace RPG_Game
 {
     public class Aladin : Character
     {
-        //public int HpValue { get; set; }
-        //public int MaxAttackValue { get; set; }
-        //public int MaxDefenseValue { get; set; }
-        //public int ExpPoints { get; set; }
-        //public int Level { get; set; }
-        private string[] AttackSkills;
-        private string[] DefenseSkills;
-
-
         public Aladin()
         {
-            //Character aladin = new Character();
-            //CharaMaxAttackValue = CalculateMaxMoveValue(Level);
-            //MaxDefenseValue = CalculateMaxMoveValue(Level);
             MaxAttackValue = CalculateMaxMoveValue( Level);
             MaxDefenseValue = CalculateMaxMoveValue( Level);
             CharName = "Aladin";
@@ -33,16 +21,7 @@ namespace RPG_Game
                 "stealPower",
                 "duck"
             };
-
-            Console.WriteLine("--- Creation of ALADIN successful. ---");
         }
-
-        //public int CalculateMaxMoveValue( int Level)
-        //{
-        //    int bestVal = Level * 10;
-        //    return bestVal;
-        //}
-
 
         // ATTACK METHODS
         public override int Attack()

@@ -36,7 +36,9 @@ namespace RPG_Game
                     turn = !turn;
                     AttackByCPU(p1, p2);
                 }
-                fileManager.InsertPlayerJSON(p1);
+                fileManager.InsertPlayerJSON(p1, false);
+                fileManager.InsertPlayerJSON(p2, true);
+
             }
 
             //Console.WriteLine("HEALTH VALUE ---> " + p1.Character.HpValue);
@@ -52,15 +54,16 @@ namespace RPG_Game
 
             if ( input == 1)
             {
-                
+                Console.WriteLine(p1.Character.AttackSkills[0]);
+                Console.WriteLine(p1.Character.AttackSkills[1]);
                 int attackValue = p1.Character.Attack();
                 int defenseValue = p2.Character.Defend(attackValue);
                 int effectiveness = attackValue - defenseValue;
 
                 p2.Character.HpValue -= effectiveness;
-                Console.WriteLine("====================");
-                Console.WriteLine("==== HP STATUS =====");
-                Console.WriteLine("====================");
+                Console.WriteLine("=====================");
+                Console.WriteLine("===== HP STATUS =====");
+                Console.WriteLine("=====================");
                 
                 Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
                 Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
@@ -117,9 +120,9 @@ namespace RPG_Game
         public void PrintTurnStatus( Player p1, Player p2, bool turn)
         {
             if ( turn)
-                Console.WriteLine( p1.username + "'s turn...");
+                Console.WriteLine( "\nIt's your turn. Please select your next move.");
             else
-                Console.WriteLine("CPU_" + p2.username + "'s turn...\n");
+                Console.WriteLine("\nWaiting for " + p2.username + " to make his move...");
         }
 
         public int GenerateRandomNumber(int max)

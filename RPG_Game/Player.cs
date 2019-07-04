@@ -15,7 +15,16 @@ namespace RPG_Game
             get { return usernameProp; }
             set { usernameProp = value; }
         }
-        
+
+        private int _level;
+
+        public int Level
+        {
+            get { return _level; }
+            set { _level = value; }
+        }
+
+
         private int pointsProp;
         public int Points
         {
@@ -43,6 +52,7 @@ namespace RPG_Game
             this.usernameProp = username;
             this.pointsProp = 0;
             _character = character;
+            _level = 1;
             
         }
 
@@ -51,10 +61,10 @@ namespace RPG_Game
             this.usernameProp = "CPU_" + GenerateRandomName();
             this.pointsProp = 0;
             _character = new Aladin();
+            _level = 1;
         }
 
         // methods
-
         public int GenerateRandomNumber(int max)
         {
             Random random = new Random();
@@ -70,63 +80,6 @@ namespace RPG_Game
 
             return lines[rand];
         }
-        ///*
-        // * Method to insert a player in the text file
-        // */ 
-        //public bool InsertPlayer()
-        //{
-        //    string username = this.username;
-        //    int points = this.Points;
-        //    string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\players.txt";
-
-        //    List<string> lines = File.ReadAllLines(filepath).ToList();
-        //    string str = username + "," + points;
-
-        //    if (!IsUsernameTaken(username, lines)) // if username is unique
-        //    {
-        //        lines.Add(str);
-
-        //        File.WriteAllLines(filepath, lines);
-        //        Console.WriteLine(filepath);
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Username already exists...");
-        //        return false;
-        //    }
-        //}
-
-        //private bool IsUsernameTaken( string username, List<string> allPlayers)
-        //{
-        //    foreach (string player in allPlayers)
-        //    {
-        //        string name = ""; // empty string to be filled till the first comma
-        //        int i = 0;
-
-        //        // extract each username
-        //        while ( i < username.Length)
-        //        {
-        //            // check till comma
-        //            if ( username[i] == ',')                    
-        //                break;                    
-        //            else                    
-        //                name += username[i];                    
-        //            i++; // increment counter
-        //        }
-
-        //        // check the name from file with the entered username
-        //        if ( name.Equals(username)) {                    
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //}
-
-        //public void DeleteAllPlayers()
-        //{
-        //    string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\players.txt";
-        //    System.IO.File.WriteAllText(filepath, string.Empty);
-        //}
+        
     }
 }
