@@ -64,13 +64,20 @@ namespace RPG_Game
             return random.Next(0, max);
         }
 
-        public virtual int Attack()
+        //public virtual int Attack()
+        //{
+        //    int attackValue = GenerateRandomNumber(MaxAttackValue);
+        //    Console.WriteLine("Attack ---> " + attackValue);
+        //    return attackValue;
+        //}
+
+        public virtual int Attack(int option)
         {
-            int attackValue = GenerateRandomNumber(MaxAttackValue);
-            Console.WriteLine("Attack ---> " + attackValue);
-            return attackValue;
+            int attackvalue = GenerateRandomNumber(MaxAttackValue);
+            Console.WriteLine("attack ---> " + attackvalue);
+            return attackvalue;
         }
-        public virtual int Defend( int enemyAttackValue)
+        public virtual int Defend(int enemyAttackValue)
         {
             int defenseValue = GenerateRandomNumber(MaxDefenseValue);
             Console.WriteLine("Defense ---> " + defenseValue);

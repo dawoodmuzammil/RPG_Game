@@ -60,7 +60,7 @@ namespace RPG_Game
         {
             this.usernameProp = "CPU_" + GenerateRandomName();
             this.pointsProp = 0;
-            _character = new Aladin();
+            _character = new Aladin(_level);
             _level = 1;
         }
 

@@ -46,33 +46,46 @@ namespace RPG_Game
 
         public void AttackByUser( Player p1, Player p2)
         {
+            // Display options 
             Console.WriteLine("1. Attack");
             Console.WriteLine("0. Forfeit Match");
 
             Console.Write("\nYour option: ");
-            int input = Convert.ToInt32(Console.ReadLine()); ;
+            int input = Convert.ToInt32(Console.ReadLine()); // user enters choice 
 
+            // user decides to attack
             if ( input == 1)
             {
-                Console.WriteLine(p1.Character.AttackSkills[0]);
-                Console.WriteLine(p1.Character.AttackSkills[1]);
-                int attackValue = p1.Character.Attack();
+                Console.WriteLine("Which move would you like to hit your opponent with?");
+
+                int option = 0;
+                // ask user for whih move he wishes to play
+                do
+                {
+                    // display skills
+                    Console.WriteLine("1. " + p1.Character.AttackSkills[0]);
+                    Console.WriteLine("2. " + p1.Character.AttackSkills[1]);
+                    Console.Write("\nYour option: ");
+                    option = Convert.ToInt32(Console.ReadLine()); // ask for input
+
+                    if (option != 1 && option != 2)
+                        Console.WriteLine("Invalid choice. Please enter again...\n");
+                    
+                } while (option == 1 && option == 2);
+
+                // calculate effectiveness of attack
+                int attackValue = p1.Character.Attack( option);
                 int defenseValue = p2.Character.Defend(attackValue);
                 int effectiveness = attackValue - defenseValue;
 
-                p2.Character.HpValue -= effectiveness;
-                Console.WriteLine("=====================");
-                Console.WriteLine("===== HP STATUS =====");
-                Console.WriteLine("=====================");
-                
-                Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
-                Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
+                p2.Character.HpValue -= effectiveness; // decrease CPU's HP
+
+                PrintHPStatus(p1, p2); // print hp status
 
                 if (p2.Character.IsLost(p2.Character.HpValue)) // checking if CPU's HP is less than 0
                 {
                     Spawn(p1);
                 }
-
             }
             else if ( input == 0)
             {
@@ -84,20 +97,30 @@ namespace RPG_Game
             }
         }
 
+        public void PrintHPStatus(Player p1, Player p2)
+        {
+            Console.WriteLine("=====================");
+            Console.WriteLine("===== HP STATUS =====");
+            Console.WriteLine("=====================");
+
+            Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
+            Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
+        }
+
         // method where CPU attacks the player
         public void AttackByCPU( Player p1, Player p2)
         {
-            int attackValue = p2.Character.Attack();
+            int attackValue = p2.Character.Attack( GenerateRandomNumber( 2));
             int defenseValue = p1.Character.Defend(attackValue);
             int effectiveness = attackValue - defenseValue;
 
             p1.Character.HpValue -= effectiveness;
-            Console.WriteLine("====================");
-            Console.WriteLine("==== HP STATUS =====");
-            Console.WriteLine("====================");
+            indent("====================");
+            indent("==== HP STATUS =====");
+            indent("====================");
 
-            Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
-            Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
+            indent(p1.username + " ---> " + p1.Character.HpValue);
+            indent(p2.username + " ---> " + p2.Character.HpValue);
 
             if (p1.Character.IsLost(p1.Character.HpValue)) // checking if CPU's HP is less than 0
             {
@@ -131,6 +154,9 @@ namespace RPG_Game
             return random.Next(0, max);
         }
 
-        //
+        static void indent(string message)
+        {
+            Console.WriteLine(message.PadLeft(message.Length + 50));
+        }
     }
 }

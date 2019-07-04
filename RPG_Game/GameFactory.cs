@@ -103,12 +103,23 @@ namespace RPG_Game
             Console.Write("Your option: ");
             int input = Convert.ToInt32(Console.ReadLine());
 
-            if (input == 1)
+            switch (input)
             {
-                return new Aladin();
+                case (1):
+                    return new Aladin(1);                    
+                case (2):
+                    return new Aladin(1);                    
+                case (3):
+                    return new Spiderman(1);                    
+                case (4):
+                    return new Aladin(1);                    
+                default:
+                    return new Aladin(1);                    
             }
-            else return null;
             
+
         }
+
+        
     }
 }
