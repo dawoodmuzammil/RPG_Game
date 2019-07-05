@@ -46,10 +46,10 @@ namespace RPG_Game
             int finalAttackValue = 0;
             switch ( option)
             {
-                case (1):
+                case (0):
                     finalAttackValue = WebAttack(attackValue);
                     break;
-                case (2):
+                case (1):
                     finalAttackValue = SpinCycle(attackValue);
                     break;
                 default:
@@ -66,19 +66,19 @@ namespace RPG_Game
          */
         public int Disarm( int curAttackValue)
         {
-            //Console.WriteLine("--- DISARM CALLED ---");
-            return curAttackValue;
+            return curAttackValue/2;
+            //return 0;
         }
 
         public int WallRun( int curAttackValue)
         {
-            //Console.WriteLine("--- WALLRUN CALLED ---");
-            int defenseVal = GenerateRandomNumber(curAttackValue);
+            int defenseVal = GenerateRandomNumber(curAttackValue/2);
             return defenseVal;
         }
 
         public override int Defend( int enemyAttackValue)
         {
+            
             int finalDefenseValue = 0;
             int option = GenerateRandomNumber(2);
             switch (option)

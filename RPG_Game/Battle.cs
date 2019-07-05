@@ -8,14 +8,15 @@ namespace RPG_Game
     {
         // properties
         FileManager fileManager;
-        
+
+        // constructor
         public Battle( Player p1, Player p2)
         {
             fileManager = new FileManager();
             Fight( p1, p2);
         }
 
-        // constructor
+        
         public void Fight( Player p1, Player p2)
         {
             int turnTemp = GenerateRandomNumber(1);
@@ -66,7 +67,7 @@ namespace RPG_Game
                     Console.WriteLine("1. " + p1.Character.AttackSkills[0]);
                     Console.WriteLine("2. " + p1.Character.AttackSkills[1]);
                     Console.Write("\nYour option: ");
-                    option = Convert.ToInt32(Console.ReadLine()); // ask for input
+                    option = Convert.ToInt32(Console.ReadLine()) - 1; // ask for input
 
                     if (option != 1 && option != 2)
                         Console.WriteLine("Invalid choice. Please enter again...\n");
@@ -77,6 +78,8 @@ namespace RPG_Game
                 int attackValue = p1.Character.Attack( option);
                 int defenseValue = p2.Character.Defend(attackValue);
                 int effectiveness = attackValue - defenseValue;
+
+                DisplayMoveReport(option, attackValue, defenseValue, effectiveness, p1, p2);
 
                 p2.Character.HpValue -= effectiveness; // decrease CPU's HP
 
@@ -99,28 +102,27 @@ namespace RPG_Game
 
         public void PrintHPStatus(Player p1, Player p2)
         {
-            Console.WriteLine("=====================");
-            Console.WriteLine("===== HP STATUS =====");
-            Console.WriteLine("=====================");
+            indent("====================");
+            indent("==== HP STATUS =====");
+            indent("====================");
 
-            Console.WriteLine(p1.username + " ---> " + p1.Character.HpValue);
-            Console.WriteLine(p2.username + " ---> " + p2.Character.HpValue);
+            indent(p1.Username + " ---> " + p1.Character.HpValue);
+            indent(p2.Username + " ---> " + p2.Character.HpValue);
         }
 
         // method where CPU attacks the player
         public void AttackByCPU( Player p1, Player p2)
         {
-            int attackValue = p2.Character.Attack( GenerateRandomNumber( 2));
+            int attackOption = GenerateRandomNumber(2);
+            int attackValue = p2.Character.Attack( attackOption);
             int defenseValue = p1.Character.Defend(attackValue);
             int effectiveness = attackValue - defenseValue;
 
-            p1.Character.HpValue -= effectiveness;
-            indent("====================");
-            indent("==== HP STATUS =====");
-            indent("====================");
+            DisplayMoveReport(attackOption, attackValue, defenseValue, effectiveness, p2, p1);
 
-            indent(p1.username + " ---> " + p1.Character.HpValue);
-            indent(p2.username + " ---> " + p2.Character.HpValue);
+            p1.Character.HpValue -= effectiveness;
+
+            PrintHPStatus( p1, p2);
 
             if (p1.Character.IsLost(p1.Character.HpValue)) // checking if CPU's HP is less than 0
             {
@@ -145,7 +147,7 @@ namespace RPG_Game
             if ( turn)
                 Console.WriteLine( "\nIt's your turn. Please select your next move.");
             else
-                Console.WriteLine("\nWaiting for " + p2.username + " to make his move...");
+                Console.WriteLine("\nWaiting for " + p2.Username + " to make his move...");
         }
 
         public int GenerateRandomNumber(int max)
@@ -156,7 +158,13 @@ namespace RPG_Game
 
         static void indent(string message)
         {
-            Console.WriteLine(message.PadLeft(message.Length + 50));
+            Console.WriteLine(message.PadLeft(message.Length + 80));
+        }
+
+        public void DisplayMoveReport( int attackMove, int attack, int defense, int effectiveness, Player attacker, Player defender)
+        {
+            Console.WriteLine(attacker.Username + "'s move of " + attacker.Character.AttackSkills[attackMove].ToUpper() + " generated an attack power of " + attack + "HP.");
+            Console.WriteLine(defender.Username + " defended " + defense + " of it.");           
         }
     }
 }

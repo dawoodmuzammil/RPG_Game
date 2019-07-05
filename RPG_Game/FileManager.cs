@@ -106,8 +106,8 @@ namespace RPG_Game
             Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU);
 
             Console.WriteLine("Game loaded successfully. Here's the summary.\n");
-            Console.WriteLine("Player 1: " + player.username + "\nPoints: " + player.Points+ "\nHealth: " + player.Character.HpValue);
-            Console.WriteLine("\nCPU: " + CPU.username + "\nPoints: " + CPU.Points+ "\nHealth: " + CPU.Character.HpValue);
+            Console.WriteLine("Player 1: " + player.Username + "\nPoints: " + player.Points+ "\nHealth: " + player.Character.HpValue);
+            Console.WriteLine("\nCPU: " + CPU.Username + "\nPoints: " + CPU.Points+ "\nHealth: " + CPU.Character.HpValue);
             Player[] playerArr = new Player[2];
             playerArr[0] = player;
             playerArr[1] = CPU;

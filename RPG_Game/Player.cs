@@ -10,7 +10,7 @@ namespace RPG_Game
     {
         // properties
         private string usernameProp;
-        public string username
+        public string Username
         {
             get { return usernameProp; }
             set { usernameProp = value; }
@@ -60,8 +60,8 @@ namespace RPG_Game
         {
             this.usernameProp = "CPU_" + GenerateRandomName();
             this.pointsProp = 0;
-            _character = new Aladin(_level);
             _level = 1;
+            _character = new Aladin(_level);
         }
 
         // methods

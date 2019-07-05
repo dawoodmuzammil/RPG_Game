@@ -40,7 +40,7 @@ namespace RPG_Game
 
             //Console.WriteLine("Game Set up. You are playing against " + CPU.username);
             Console.WriteLine("THE GAME IS SET!!");
-            Console.WriteLine(username + " (" + userCharacter.CharName + ")" + " vs. " + CPU.username  + " (Aladin)\n");
+            Console.WriteLine(username + " (" + userCharacter.CharName + ")" + " vs. " + CPU.Username + " (Aladin)\n");
 
             // start battle
             Battle battle = new Battle( player, CPU);

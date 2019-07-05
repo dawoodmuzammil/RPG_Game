@@ -85,7 +85,7 @@ namespace RPG_Game
             switch (option)
             {
                 case (0):
-                    finalDefenseValue = Duck(enemyAttackValue);
+                    finalDefenseValue = Duck(enemyAttackValue / 2);
                     break;
                 case (1):
                     StealPower(enemyAttackValue);
@@ -101,31 +101,10 @@ namespace RPG_Game
             return curAttackValue;
         }
 
-        public void StealPower( int curAttackValue)
+        public int StealPower( int curAttackValue)
         {
-            this.HpValue += curAttackValue;           
+            return -(curAttackValue * 2);          
         }
-
-        //public void attack()
-        //{
-        //    int attackValue = GenerateRandomNumber(MaxAttackValue);
-        //    int rand = GenerateRandomNumber(1);
-        //    if ( rand == 0)            
-        //        PowerPunch( attackValue);            
-        //    else
-
-
-        //    Console.WriteLine("attack ---> " + attackValue);
-        //}
         
-
-        // DISPLAY METHODS
-        public void DisplayAttackMoves()
-        {
-            for (int i = 0; i < AttackSkills.Length; i++)
-            {
-                Console.WriteLine( i);
-            }
-        }
     }
 }

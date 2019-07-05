@@ -47,9 +47,9 @@ namespace RPG_Game
             //save it in the file
         }
 
-        public virtual int CalculateMaxMoveValue(int Level)
+        public int CalculateMaxMoveValue(int level)
         {
-            int bestVal = Level * 10;
+            int bestVal = level * 10;
             return bestVal;
         }
 
