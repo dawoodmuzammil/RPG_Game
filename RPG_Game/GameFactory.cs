@@ -112,11 +112,11 @@ namespace RPG_Game
                     case (1):
                         return new Aladin(1);
                     case (2):
-                        return new Aladin(1);
+                        return new Tarzan(1);
                     case (3):
                         return new Spiderman(1);
                     case (4):
-                        return new Aladin(1);
+                        return new Batman(1);
                     default:
                         Console.WriteLine("\nInvalid selection...\n");
                         continue;

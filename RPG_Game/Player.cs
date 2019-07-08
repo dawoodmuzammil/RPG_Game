@@ -58,12 +58,31 @@ namespace RPG_Game
         }
 
         [JsonConstructor]
-        public Player(int level)
+        public Player(int UserLevel)
         {
             this.usernameProp = "CPU_" + GenerateRandomName();
             _points = 0;
-            _level = level;
-            _character = new Aladin(_level);
+            _level = UserLevel;
+
+            // select User's character
+            int characterChoice = GenerateRandomNumber(4);
+            Console.WriteLine(characterChoice);
+            
+            switch( characterChoice)
+            {
+                case (1):
+                    _character = new Aladin(_level);
+                    break;
+                case (2):
+                    _character = new Tarzan(_level);
+                    break;
+                case (3):
+                    _character = new Spiderman(_level);
+                    break;
+                case (4):
+                    _character = new Batman(_level);
+                    break;
+            }
         }
 
         
