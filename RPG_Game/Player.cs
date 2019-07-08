@@ -41,83 +41,26 @@ namespace RPG_Game
             set { _character = value; }
         }
 
-
-        //private string filepathProp = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\players.txt";
-        //public string filepath { get; private set; }
-
-
-
-        // constructor
-        public Player( string username, Character character)
-        {          
-            this.usernameProp = username;
-            _points = 0;
-            _character = character;
-            _level = 1;
-            
-        }
-
-        [JsonConstructor]
-        public Player(int UserLevel)
-        {
-            this.usernameProp = "CPU_" + GenerateRandomName();
-            _points = 0;
-            _level = UserLevel;
-
-            // select User's character
-            int characterChoice = RandomNumberGenerator.GenerateRandomNumber(4) + 1;
-            
-            switch( characterChoice)
-            {
-                case (1):
-                    _character = new Aladin(_level);
-                    break;
-                case (2):
-                    _character = new Tarzan(_level);
-                    break;
-                case (3):
-                    _character = new Spiderman(_level);
-                    break;
-                case (4):
-                    _character = new Batman(_level);
-                    break;
-            }
-        }
-
-        
-
-        // methods
-
-        public string GenerateRandomName()
-        {
-            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\randomNames.txt";
-
-            List<string> lines = File.ReadAllLines(filepath).ToList();
-            int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
-
-            return lines[rand];
-        }
-
-        public int AwardPoints( int remainingHP)
+        public int AwardPoints(int remainingHP)
         {
             int pointsAwarded = 0;
-            switch (_level)
+            switch (Level)
             {
                 case (1):
                     pointsAwarded = 100 + remainingHP;
-                    _points += pointsAwarded;
+                    Points += pointsAwarded;
                     break;
                 case (2):
                     pointsAwarded = 200 + remainingHP;
-                    _points += pointsAwarded;
+                    Points += pointsAwarded;
                     break;
                 case (3):
                     pointsAwarded = 300 + remainingHP;
-                    _points += pointsAwarded;
+                    Points += pointsAwarded;
                     break;
                 case (4):
                     pointsAwarded = 400 + remainingHP;
-                    _points += pointsAwarded;
+                    Points += pointsAwarded;
                     break;
                 case (5):
                     Console.WriteLine("WOW!!! It seems you are undefeatable. You have successfully finished this game.");
@@ -134,36 +77,36 @@ namespace RPG_Game
 
         public void IncrementLevel()
         {
-            if ( _points > 0 && _points < 100)
+            if (Points > 0 && Points < 100)
             {
                 return;
             }
-            else if (_points > 100 && _points < 250)
+            else if (Points > 100 && Points < 250)
             {
                 Console.WriteLine("**********************************************");
                 Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 2.");
                 Console.WriteLine("**********************************************");
-                _level = 2;                                
+                Level = 2;
             }
-            else if (_points > 250 && _points < 400)
+            else if (Points > 250 && Points < 400)
             {
-                _level = 3;
+                Level = 3;
             }
-            else if (_points > 400 && _points < 550)
+            else if (Points > 400 && Points < 550)
             {
-                _level = 4;
+                Level = 4;
             }
-            else if (_points > 550 && _points < 750)
+            else if (Points > 550 && Points < 750)
             {
-                _level = 5;
+                Level = 5;
             }
 
-            _character.SetHP(_level);
+            Character.SetHP(Level);
 
             Console.WriteLine("**********************************************");
             Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 2.");
             Console.WriteLine("**********************************************");
         }
-        
+
     }
 }

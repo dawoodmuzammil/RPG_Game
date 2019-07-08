@@ -32,10 +32,10 @@ namespace RPG_Game
 
             string username = GetUsername(); // get username from user
             Character userCharacter = GetUserCharacter();
-            player = new Player(username, userCharacter); // create user's player
+            player = new PlayerUser(username, userCharacter); // create user's player
             fileManager.InsertPlayerJSON(player, false);
 
-            CPU = new Player( player.Level); // create CPU player
+            CPU = new PlayerCPU( player.Level); // create CPU player
             fileManager.InsertPlayerJSON(CPU, true);
 
             // start battle

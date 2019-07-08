@@ -151,7 +151,7 @@ namespace RPG_Game
 
         public void Spawn(Player p1, int level)
         {
-            Player spawnedPlayer = new Player( level); // create CPU player
+            Player spawnedPlayer = new PlayerCPU( level); // create CPU player
             Console.WriteLine("LEVEL OF CPU ---> " + spawnedPlayer.Level);
             Battle battle = new Battle(p1, spawnedPlayer);  
         }

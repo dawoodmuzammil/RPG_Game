@@ -1,1 +1,22 @@
-{"Username":"CPU_Rose","Level":1,"Points":0,"Character":{"$type":"RPG_Game.Aladin, RPG_Game","HpValue":87,"Level":1,"CharName":"Aladin","MaxAttackValue":10,"MaxDefenseValue":10,"AttackSkills":["Genie Help","Power Punch"],"DefenseSkills":["Duck","Steal Power"]}}
+{
+  "$type": "RPG_Game.PlayerCPU, RPG_Game",
+  "Username": "CPU_Imojean",
+  "Level": 1,
+  "Points": 0,
+  "Character": {
+    "$type": "RPG_Game.Batman, RPG_Game",
+    "HpValue": 98,
+    "Level": 1,
+    "CharName": "Batman",
+    "MaxAttackValue": 10,
+    "MaxDefenseValue": 10,
+    "AttackSkills": [
+      "Summon Bats",
+      "Batarang"
+    ],
+    "DefenseSkills": [
+      "Heal",
+      "Roll Escape"
+    ]
+  }
+}

@@ -24,7 +24,12 @@ namespace RPG_Game
                 filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
             else
                 filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
-            string strJSON = JsonConvert.SerializeObject(player);
+            string strJSON = JsonConvert.SerializeObject(player, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameAssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple
+            });
+
             File.WriteAllText(filepath, strJSON);
         }
 
@@ -34,11 +39,17 @@ namespace RPG_Game
 
             string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
             string jsonOutput = File.ReadAllText(filepath);
-            Player player = JsonConvert.DeserializeObject<Player>(jsonOutput);
+            Player player = JsonConvert.DeserializeObject<Player>(jsonOutput, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            });
 
             string filepathCPU = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
             string jsonOutputCPU = File.ReadAllText(filepathCPU);
-            Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU);
+            Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            });
 
             Console.WriteLine("Game loaded successfully. Here's the summary.\n");
             Console.WriteLine("Player 1: " + player.Username + "\nPoints: " + player.Points+ "\nHealth: " + player.Character.HpValue + "\nLevel: " + CPU.Character.Level);
@@ -46,6 +57,9 @@ namespace RPG_Game
             Player[] playerArr = new Player[2];
             playerArr[0] = player;
             playerArr[1] = CPU;
+
+            Console.WriteLine();            
+            Console.WriteLine("\n*************************************************************************************************\n");
 
             return playerArr;
         }
