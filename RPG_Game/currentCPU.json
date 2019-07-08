@@ -1,11 +1,11 @@
 {
   "$type": "RPG_Game.PlayerCPU, RPG_Game",
-  "Username": "CPU_Imojean",
+  "Username": "CPU_Stacy",
   "Level": 1,
   "Points": 0,
   "Character": {
     "$type": "RPG_Game.Batman, RPG_Game",
-    "HpValue": 98,
+    "HpValue": 95,
     "Level": 1,
     "CharName": "Batman",
     "MaxAttackValue": 10,

@@ -1,22 +1,22 @@
 {
   "$type": "RPG_Game.PlayerUser, RPG_Game",
-  "Username": "dawood",
+  "Username": "dawiid",
   "Level": 1,
   "Points": 0,
   "Character": {
-    "$type": "RPG_Game.Aladin, RPG_Game",
-    "HpValue": 89,
+    "$type": "RPG_Game.Tarzan, RPG_Game",
+    "HpValue": 90,
     "Level": 1,
-    "CharName": "Aladin",
+    "CharName": "Tarzan",
     "MaxAttackValue": 10,
     "MaxDefenseValue": 10,
     "AttackSkills": [
-      "Genie Help",
-      "Power Punch"
+      "Flying Kick",
+      "Great Ape"
     ],
     "DefenseSkills": [
-      "Duck",
-      "Steal Power"
+      "Eavesdrop",
+      "Cover"
     ]
   }
 }

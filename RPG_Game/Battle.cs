@@ -118,12 +118,12 @@ namespace RPG_Game
         public void PrintHPStatus(Player p1, Player p2)
         {
             Console.WriteLine();
-            indent("====================");
-            indent("==== HP STATUS =====");
-            indent("====================");
+            Indent("====================");
+            Indent("==== HP STATUS =====");
+            Indent("====================");
 
-            indent(p1.Username + " ---> " + p1.Character.HpValue);
-            indent(p2.Username + " ---> " + p2.Character.HpValue);
+            Indent(p1.Username + " ---> " + p1.Character.HpValue);
+            Indent(p2.Username + " ---> " + p2.Character.HpValue);
         }
 
         // method where CPU attacks the player
@@ -175,7 +175,7 @@ namespace RPG_Game
             }
         }
 
-        static void indent(string message)
+        static void Indent(string message)
         {
             Console.WriteLine(message.PadLeft(message.Length + 0));
         }

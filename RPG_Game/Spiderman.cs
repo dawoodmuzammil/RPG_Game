@@ -77,8 +77,7 @@ namespace RPG_Game
         }
 
         public override int Defend( int enemyAttackValue)
-        {
-            
+        {            
             int finalDefenseValue = 0;
             int option = RandomNumberGenerator.GenerateRandomNumber(2);
             switch (option)

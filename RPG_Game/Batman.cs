@@ -67,8 +67,7 @@ namespace RPG_Game
         public int Heal(int curAttackValue)
         {
             int random = RandomNumberGenerator.GenerateRandomNumber(curAttackValue);
-            int heal = (random / 2) * -1;
-            Console.WriteLine("Attack was reversed by the HEAL defense move. Defender's HP is now increased by " + heal + "HP.");
+            int heal = (random / 2);
             return heal;
             //return 0;
         }

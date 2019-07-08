@@ -51,15 +51,15 @@ namespace RPG_Game
                     Points += pointsAwarded;
                     break;
                 case (2):
-                    pointsAwarded = 200 + remainingHP;
+                    pointsAwarded = 110 + remainingHP;
                     Points += pointsAwarded;
                     break;
                 case (3):
-                    pointsAwarded = 300 + remainingHP;
+                    pointsAwarded = 130 + remainingHP;
                     Points += pointsAwarded;
                     break;
                 case (4):
-                    pointsAwarded = 400 + remainingHP;
+                    pointsAwarded = 150 + remainingHP;
                     Points += pointsAwarded;
                     break;
                 case (5):
@@ -90,22 +90,27 @@ namespace RPG_Game
             }
             else if (Points > 250 && Points < 400)
             {
+                Console.WriteLine("**********************************************");
+                Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 3.");
+                Console.WriteLine("**********************************************");
                 Level = 3;
             }
             else if (Points > 400 && Points < 550)
             {
+                Console.WriteLine("**********************************************");
+                Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 4.");
+                Console.WriteLine("**********************************************");
                 Level = 4;
             }
-            else if (Points > 550 && Points < 750)
+            else if (Points > 550)
             {
+                Console.WriteLine("**********************************************");
+                Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 5.");
+                Console.WriteLine("**********************************************");
                 Level = 5;
             }
 
-            Character.SetHP(Level);
-
-            Console.WriteLine("**********************************************");
-            Console.WriteLine("LEVEL UP!\nYou have been promoted to Level 2.");
-            Console.WriteLine("**********************************************");
+            Character.SetHP(Level);            
         }
 
     }

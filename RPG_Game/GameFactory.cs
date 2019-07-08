@@ -9,9 +9,10 @@ namespace RPG_Game
     public class GameFactory
     {        
         // properties
-        Player player;
-        Player CPU;
-        FileManager fileManager;
+        private Player player;
+        private Player CPU;
+        private FileManager fileManager;
+        private int initialLevel = 1;
 
         // constructor
         public GameFactory()
@@ -108,13 +109,13 @@ namespace RPG_Game
                 switch (input)
                 {
                     case (1):
-                        return new Aladin(1);
+                        return new Aladin(initialLevel);
                     case (2):
-                        return new Tarzan(1);
+                        return new Tarzan(initialLevel);
                     case (3):
-                        return new Spiderman(1);
+                        return new Spiderman(initialLevel);
                     case (4):
-                        return new Batman(1);
+                        return new Batman(initialLevel);
                     default:
                         Console.WriteLine("\nInvalid selection...\n");
                         continue;
