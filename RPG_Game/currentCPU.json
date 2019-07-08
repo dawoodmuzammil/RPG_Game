@@ -1,0 +1,22 @@
+{
+  "$type": "RPG_Game.PlayerCPU, RPG_Game",
+  "Username": "CPU_Marin",
+  "Level": 2,
+  "Points": 0,
+  "Character": {
+    "$type": "RPG_Game.Spiderman, RPG_Game",
+    "HpValue": 100,
+    "Level": 1,
+    "CharName": "Spider-Man",
+    "MaxAttackValue": 20,
+    "MaxDefenseValue": 20,
+    "AttackSkills": [
+      "Web Attack",
+      "Spin Cycle"
+    ],
+    "DefenseSkills": [
+      "Disarm",
+      "Wall Run"
+    ]
+  }
+}

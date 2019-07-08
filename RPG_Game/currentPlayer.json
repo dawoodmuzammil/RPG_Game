@@ -1,0 +1,22 @@
+{
+  "$type": "RPG_Game.PlayerUser, RPG_Game",
+  "Username": "dawiid",
+  "Level": 2,
+  "Points": 122,
+  "Character": {
+    "$type": "RPG_Game.Tarzan, RPG_Game",
+    "HpValue": 90,
+    "Level": 1,
+    "CharName": "Tarzan",
+    "MaxAttackValue": 10,
+    "MaxDefenseValue": 10,
+    "AttackSkills": [
+      "Flying Kick",
+      "Great Ape"
+    ],
+    "DefenseSkills": [
+      "Eavesdrop",
+      "Cover"
+    ]
+  }
+}
