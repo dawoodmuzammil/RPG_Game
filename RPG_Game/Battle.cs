@@ -13,6 +13,8 @@ namespace RPG_Game
         public Battle( Player p1, Player p2)
         {
             fileManager = new FileManager();
+            fileManager.InsertPlayerJSON(p1, false);
+            fileManager.InsertPlayerJSON(p2, true);
             Fight( p1, p2);
         }
 
@@ -41,63 +43,68 @@ namespace RPG_Game
                 fileManager.InsertPlayerJSON(p2, true);
 
             }
-
-            //Console.WriteLine("HEALTH VALUE ---> " + p1.Character.HpValue);
         }
 
         public void AttackByUser( Player p1, Player p2)
         {
-            // Display options 
-            Console.WriteLine("1. Attack");
-            Console.WriteLine("0. Forfeit Match");
-
-            Console.Write("\nYour option: ");
-            int input = Convert.ToInt32(Console.ReadLine()); // user enters choice 
-
-            // user decides to attack
-            if ( input == 1)
+            int input = 0;
+            do
             {
-                Console.WriteLine("Which move would you like to hit your opponent with?");
+                // Display options 
+                Console.WriteLine("1. Attack");
+                Console.WriteLine("0. Forfeit Match");
 
-                int option = 0;
-                // ask user for whih move he wishes to play
-                do
+                Console.Write("\nYour option: ");
+                input = Convert.ToInt32(Console.ReadLine()); // user enters choice 
+
+                // user decides to attack
+                if (input == 1)
                 {
-                    // display skills
-                    Console.WriteLine("1. " + p1.Character.AttackSkills[0]);
-                    Console.WriteLine("2. " + p1.Character.AttackSkills[1]);
-                    Console.Write("\nYour option: ");
-                    option = Convert.ToInt32(Console.ReadLine()) - 1; // ask for input
+                    Console.WriteLine("Which move would you like to hit your opponent with?");
 
-                    if (option != 1 && option != 2)
-                        Console.WriteLine("Invalid choice. Please enter again...\n");
-                    
-                } while (option == 1 && option == 2);
+                    int option = 0;
+                    // ask user for whih move he wishes to play
+                    do
+                    {
+                        // display skills
+                        Console.WriteLine("1. " + p1.Character.AttackSkills[0]);
+                        Console.WriteLine("2. " + p1.Character.AttackSkills[1]);
+                        Console.Write("\nYour option: ");
+                        option = Convert.ToInt32(Console.ReadLine()) - 1; // ask for input
 
-                // calculate effectiveness of attack
-                int attackValue = p1.Character.Attack( option);
-                int defenseValue = p2.Character.Defend(attackValue);
-                int effectiveness = attackValue - defenseValue;
+                        if (option != 1 && option != 2)
+                            Console.WriteLine("Invalid choice. Please enter again...\n");
 
-                DisplayMoveReport(option, attackValue, defenseValue, effectiveness, p1, p2);
+                    } while (option == 1 && option == 2);
 
-                p2.Character.HpValue -= effectiveness; // decrease CPU's HP
+                    // calculate effectiveness of attack
+                    int attackValue = p1.Character.Attack(option);
+                    int defenseValue = p2.Character.Defend(attackValue);
+                    int effectiveness = attackValue - defenseValue;
 
-                PrintHPStatus(p1, p2); // print hp status
+                    DisplayMoveReport(option, attackValue, defenseValue, effectiveness, p1, p2);
 
-                if (p2.Character.IsLost(p2.Character.HpValue)) // checking if CPU's HP is less than 0
-                {
-                    Spawn(p1);
+                    p2.Character.HpValue -= effectiveness; // decrease CPU's HP
+
+                    PrintHPStatus(p1, p2); // print hp status
+
+                    if (p2.Character.IsLost(p2.Character.HpValue)) // checking if CPU's HP is less than 0
+                    {
+                        Console.WriteLine("\n\nCONGRATULATIONS. You have won the first round. You have earned " + p1.AwardPoints(p1.Character.HpValue) + " points.");
+                        Console.WriteLine("You will now be put into the battlefield with a tougher opponent. Your HP is now set to " + p1.Character.HpValue + "\n\n");
+
+                        Spawn(p1, p1.Level);
+                    }
                 }
-            }
-            else if ( input == 0)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice.");
-            }
+                else if (input == 0)
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid choice. Please try again.\n");
+                }
+            } while (input != 1 && input != 0);
         }
 
         public void PrintHPStatus(Player p1, Player p2)
@@ -126,16 +133,18 @@ namespace RPG_Game
 
             if (p1.Character.IsLost(p1.Character.HpValue)) // checking if CPU's HP is less than 0
             {
-                Console.WriteLine("G A M E  O V E R");
+                Console.WriteLine("\n\nG   A   M   E      O   V   E   R\n\n");
+                fileManager.DeleteAllPlayers();
             }
         }
 
         
 
-        public void Spawn(Player p1)
+        public void Spawn(Player p1, int level)
         {
-            Player spawnedPlayer = new Player(); // create CPU player
-            Fight( p1, spawnedPlayer);
+            Player spawnedPlayer = new Player( level); // create CPU player
+            Console.WriteLine("LEVEL OF CPU ---> " + spawnedPlayer.Level);
+            Battle battle = new Battle(p1, spawnedPlayer);  
         }
 
 
@@ -158,13 +167,13 @@ namespace RPG_Game
 
         static void indent(string message)
         {
-            Console.WriteLine(message.PadLeft(message.Length + 80));
+            Console.WriteLine(message.PadLeft(message.Length + 20));
         }
 
         public void DisplayMoveReport( int attackMove, int attack, int defense, int effectiveness, Player attacker, Player defender)
         {
             Console.WriteLine(attacker.Username + "'s move of " + attacker.Character.AttackSkills[attackMove].ToUpper() + " generated an attack power of " + attack + "HP.");
-            Console.WriteLine(defender.Username + " defended " + defense + " of it.");           
+            Console.WriteLine(defender.Username + " defended " + defense + "HP of it.");           
         }
     }
 }

@@ -7,11 +7,15 @@ namespace RPG_Game
     public abstract class Character : ICharacter
     {
         // properties        
-        private int HpVal = 100;
+        private int _HpValue = 100;
         public int HpValue
         {
-            get { return HpVal; }
-            set { HpVal = value; }
+            get {
+                if (_HpValue < 0)
+                    return 0;
+                return _HpValue;
+            }
+            set { _HpValue = value; }
         }
 
         private int LevelVal = 1;
@@ -90,6 +94,27 @@ namespace RPG_Game
             if (CurrentHP <= 0)
                 return true;
             return false;
+        }
+
+        public void SetHP( int level)
+        {
+            switch(level)
+            {
+                case (1):
+                    _HpValue = 100;
+                    break;
+                case (2):
+                    _HpValue = 90;
+                    break;
+                case (3):
+                    _HpValue = 85;
+                    break;
+                case (4):
+                    _HpValue = 75;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

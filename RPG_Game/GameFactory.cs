@@ -35,7 +35,7 @@ namespace RPG_Game
             player = new Player(username, userCharacter); // create user's player
             fileManager.InsertPlayerJSON(player, false);
 
-            CPU = new Player(); // create CPU player
+            CPU = new Player( player.Level); // create CPU player
             fileManager.InsertPlayerJSON(CPU, true);
 
             //Console.WriteLine("Game Set up. You are playing against " + CPU.username);
@@ -81,6 +81,7 @@ namespace RPG_Game
         public void LoadGame()
         {
             Player[] arr = fileManager.LoadPlayerJSON(); // load both player
+            
             Battle battle = new Battle(arr[0], arr[1]);
         }
 
@@ -98,26 +99,31 @@ namespace RPG_Game
 
         public Character GetUserCharacter()
         {
-            Console.WriteLine("Please character would you like to play with (enter the number 1-4): ");
-            Console.WriteLine("1. Aladin\n2. Tarzan\n3. Spider-Man\n4. Batman");
-            Console.Write("Your option: ");
-            int input = Convert.ToInt32(Console.ReadLine());
-
-            switch (input)
+            int input = 0;
+            do
             {
-                case (1):
-                    return new Aladin(1);                    
-                case (2):
-                    return new Aladin(1);                    
-                case (3):
-                    return new Spiderman(1);                    
-                case (4):
-                    return new Aladin(1);                    
-                default:
-                    return new Aladin(1);                    
-            }
-            
+                Console.WriteLine("Please character would you like to play with (enter the number 1-4): ");
+                Console.WriteLine("1. Aladin\n2. Tarzan\n3. Spider-Man\n4. Batman");
+                Console.Write("Your option: ");
+                input = Convert.ToInt32(Console.ReadLine());
 
+                switch (input)
+                {
+                    case (1):
+                        return new Aladin(1);
+                    case (2):
+                        return new Aladin(1);
+                    case (3):
+                        return new Spiderman(1);
+                    case (4):
+                        return new Aladin(1);
+                    default:
+                        Console.WriteLine("\nInvalid selection...\n");
+                        continue;
+                }
+            
+            } while (input != 1 && input != 2 && input != 3 && input != 4);
+            return new Aladin(1);
         }
 
         
