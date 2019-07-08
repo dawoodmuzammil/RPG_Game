@@ -14,14 +14,18 @@ namespace RPG_Game
         {
             fileManager = new FileManager();
             fileManager.InsertPlayerJSON(p1, false);
-            fileManager.InsertPlayerJSON(p2, true);
+                fileManager.InsertPlayerJSON(p2, true);
+           
+            Console.WriteLine("THE BATTLE IS SET!!");
+            Console.WriteLine(p1.Username+ " (" + p1.Character.CharName + ")" + " vs. " + p2.Username + " (" + p2.Character.CharName + ")\n");
+
             Fight( p1, p2);
         }
 
         
         public void Fight( Player p1, Player p2)
         {
-            int turnTemp = GenerateRandomNumber(1);
+            int turnTemp = RandomNumberGenerator.GenerateRandomNumber(1);
             bool turn = true;
             if (turnTemp == 1)
                 turn = false;
@@ -47,6 +51,7 @@ namespace RPG_Game
 
         public void AttackByUser( Player p1, Player p2)
         {
+            
             int input = 0;
             do
             {
@@ -60,7 +65,7 @@ namespace RPG_Game
                 // user decides to attack
                 if (input == 1)
                 {
-                    Console.WriteLine("Which move would you like to hit your opponent with?");
+                    Console.WriteLine("\nWhich move would you like to hit your opponent with?");
 
                     int option = 0;
                     // ask user for whih move he wishes to play
@@ -82,6 +87,8 @@ namespace RPG_Game
                     int defenseValue = p2.Character.Defend(attackValue);
                     int effectiveness = attackValue - defenseValue;
 
+                    Console.Clear();
+
                     DisplayMoveReport(option, attackValue, defenseValue, effectiveness, p1, p2);
 
                     p2.Character.HpValue -= effectiveness; // decrease CPU's HP
@@ -98,6 +105,7 @@ namespace RPG_Game
                 }
                 else if (input == 0)
                 {
+                    Console.WriteLine("\n\n************************* G A M E  O V E R *************************\nThank you for playung Borda's RPG Game.\n");
                     Environment.Exit(0);
                 }
                 else
@@ -109,6 +117,7 @@ namespace RPG_Game
 
         public void PrintHPStatus(Player p1, Player p2)
         {
+            Console.WriteLine();
             indent("====================");
             indent("==== HP STATUS =====");
             indent("====================");
@@ -119,8 +128,8 @@ namespace RPG_Game
 
         // method where CPU attacks the player
         public void AttackByCPU( Player p1, Player p2)
-        {
-            int attackOption = GenerateRandomNumber(2);
+        {        
+            int attackOption = RandomNumberGenerator.GenerateRandomNumber(2);
             int attackValue = p2.Character.Attack( attackOption);
             int defenseValue = p1.Character.Defend(attackValue);
             int effectiveness = attackValue - defenseValue;
@@ -131,14 +140,14 @@ namespace RPG_Game
 
             PrintHPStatus( p1, p2);
 
+            // check if the user has lost... Game over if true
             if (p1.Character.IsLost(p1.Character.HpValue)) // checking if CPU's HP is less than 0
             {
-                Console.WriteLine("\n\nG   A   M   E      O   V   E   R\n\n");
-                fileManager.DeleteAllPlayers();
+                Console.WriteLine("\n\nG   A   M   E      O   V   E   R\n\n"); // display message
+                fileManager.DeleteAllPlayers(); // clear JSON files
             }
         }
 
-        
 
         public void Spawn(Player p1, int level)
         {
@@ -153,21 +162,22 @@ namespace RPG_Game
         // ==================== //
         public void PrintTurnStatus( Player p1, Player p2, bool turn)
         {
-            if ( turn)
-                Console.WriteLine( "\nIt's your turn. Please select your next move.");
-            else
-                Console.WriteLine("\nWaiting for " + p2.Username + " to make his move...");
-        }
+            if (turn)
+            {
+                Console.WriteLine("\n*************************************************************************************************\n");
+                Console.WriteLine("It's your turn. Please select your next move.");
 
-        public int GenerateRandomNumber(int max)
-        {
-            Random random = new Random();
-            return random.Next(0, max);
+            }
+            else
+            {
+                Console.WriteLine("\n*************************************************************************************************\n");
+                Console.WriteLine("Waiting for " + p2.Username + " to make his move...\n");
+            }
         }
 
         static void indent(string message)
         {
-            Console.WriteLine(message.PadLeft(message.Length + 20));
+            Console.WriteLine(message.PadLeft(message.Length + 0));
         }
 
         public void DisplayMoveReport( int attackMove, int attack, int defense, int effectiveness, Player attacker, Player defender)

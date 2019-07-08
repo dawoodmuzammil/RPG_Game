@@ -65,8 +65,7 @@ namespace RPG_Game
             _level = UserLevel;
 
             // select User's character
-            int characterChoice = GenerateRandomNumber(4);
-            Console.WriteLine(characterChoice);
+            int characterChoice = RandomNumberGenerator.GenerateRandomNumber(4) + 1;
             
             switch( characterChoice)
             {
@@ -88,18 +87,13 @@ namespace RPG_Game
         
 
         // methods
-        public int GenerateRandomNumber(int max)
-        {
-            Random random = new Random();
-            return random.Next(0, max);
-        }
 
         public string GenerateRandomName()
         {
             string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\randomNames.txt";
 
             List<string> lines = File.ReadAllLines(filepath).ToList();
-            int rand = GenerateRandomNumber(lines.Count);
+            int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
 
             return lines[rand];
         }

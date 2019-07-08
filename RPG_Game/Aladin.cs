@@ -27,29 +27,9 @@ namespace RPG_Game
         // ========================================
 
         // ------------- ATTACK ----------------//
-        //public override int Attack()
-        //{
-        //    int attackValue = GenerateRandomNumber(MaxAttackValue);
-        //    String SkillOption = AttackSkills[GenerateRandomNumber(2)];
-        //    Console.WriteLine(SkillOption + " implemented . . . ");
-
-        //    if (SkillOption.ToLower().Equals("geniehelp"))
-        //    {
-        //        attackValue = GenieHelp( attackValue);
-                
-        //    }
-        //    else if (SkillOption.ToLower().Equals("powerpunch"))
-        //    {
-        //        attackValue = (int)PowerPunch( attackValue);
-        //    }
-
-        //    Console.WriteLine("Attack ---> " + attackValue);
-        //    return attackValue;
-        //}
-
         public override int Attack(int option)
         {
-            int attackValue = GenerateRandomNumber(MaxAttackValue);
+            int attackValue = RandomNumberGenerator.GenerateRandomNumber(MaxAttackValue);
             int finalAttackValue = 0;
             switch (option)
             {
@@ -72,7 +52,7 @@ namespace RPG_Game
 
         public int GenieHelp( int curAttackValue)
         {
-            return curAttackValue + GenerateRandomNumber(10);
+            return curAttackValue + RandomNumberGenerator.GenerateRandomNumber(10);
         }
 
 
@@ -81,7 +61,7 @@ namespace RPG_Game
         public override int Defend(int enemyAttackValue)
         {
             int finalDefenseValue = 0;
-            int option = GenerateRandomNumber(2);
+            int option = RandomNumberGenerator.GenerateRandomNumber(2);
             switch (option)
             {
                 case (0):

@@ -1,1 +1,1 @@
-{"Username":"dawood","Level":1,"Points":0,"Character":{"HpValue":100,"Level":1,"ExpPoints":0,"CharName":"Aladin","MaxAttackValue":10,"MaxDefenseValue":10,"AttackSkills":["Genie Help","Power Punch"],"DefenseSkills":["Duck","Steal Power"]}}
+{"Username":"dawood","Level":1,"Points":0,"Character":{"$type":"RPG_Game.Tarzan, RPG_Game","HpValue":77,"Level":1,"CharName":"Tarzan","MaxAttackValue":10,"MaxDefenseValue":10,"AttackSkills":["Flying Kick","Great Ape"],"DefenseSkills":["Eavesdrop","Cover"]}}

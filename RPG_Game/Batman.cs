@@ -36,13 +36,13 @@ namespace RPG_Game
 
         public int Batarang(int curAttackValue)
         {
-            int newAttackValue = curAttackValue + GenerateRandomNumber(MaxAttackValue);
+            int newAttackValue = curAttackValue + RandomNumberGenerator.GenerateRandomNumber(MaxAttackValue);
             return newAttackValue;
         }
 
         public override int Attack(int option)
         {
-            int attackValue = GenerateRandomNumber(MaxAttackValue);
+            int attackValue = RandomNumberGenerator.GenerateRandomNumber(MaxAttackValue);
             int finalAttackValue = 0;
             switch (option)
             {
@@ -66,7 +66,7 @@ namespace RPG_Game
          */
         public int Heal(int curAttackValue)
         {
-            int random = GenerateRandomNumber(curAttackValue);
+            int random = RandomNumberGenerator.GenerateRandomNumber(curAttackValue);
             int heal = (random / 2) * -1;
             Console.WriteLine("Attack was reversed by the HEAL defense move. Defender's HP is now increased by " + heal + "HP.");
             return heal;
@@ -75,7 +75,7 @@ namespace RPG_Game
 
         public int RollEscape(int curAttackValue)
         {
-            int defenseVal = GenerateRandomNumber(curAttackValue / 2);
+            int defenseVal = RandomNumberGenerator.GenerateRandomNumber(curAttackValue / 2);
             return defenseVal;
         }
 
@@ -83,7 +83,7 @@ namespace RPG_Game
         {
 
             int finalDefenseValue = 0;
-            int option = GenerateRandomNumber(2);
+            int option = RandomNumberGenerator.GenerateRandomNumber(2);
             switch (option)
             {
                 case (0):

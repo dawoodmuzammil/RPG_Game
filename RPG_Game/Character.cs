@@ -25,13 +25,6 @@ namespace RPG_Game
             set { LevelVal = value; }
         }
 
-        private int ExpVal = 0;
-        public int ExpPoints
-        {
-            get { return ExpVal = 0; }
-            set { ExpVal = value; }
-        }
-
         private string _charName;
         public string CharName
         {
@@ -45,12 +38,6 @@ namespace RPG_Game
         public string[] AttackSkills { get; set; }
         public string[] DefenseSkills { get; set; }
 
-        public void UpdateExpPoints( int Val)
-        {
-            ExpPoints = Val + ExpPoints;
-            //save it in the file
-        }
-
         public int CalculateMaxMoveValue(int level)
         {
             int bestVal = level * 10;
@@ -62,12 +49,6 @@ namespace RPG_Game
             HpValue = Val + HpValue;
         }
 
-        public int GenerateRandomNumber( int max)
-        {
-            Random random = new Random();
-            return random.Next(0, max);
-        }
-
         //public virtual int Attack()
         //{
         //    int attackValue = GenerateRandomNumber(MaxAttackValue);
@@ -77,13 +58,13 @@ namespace RPG_Game
 
         public virtual int Attack(int option)
         {
-            int attackvalue = GenerateRandomNumber(MaxAttackValue);
+            int attackvalue = RandomNumberGenerator.GenerateRandomNumber(MaxAttackValue);
             Console.WriteLine("attack ---> " + attackvalue);
             return attackvalue;
         }
         public virtual int Defend(int enemyAttackValue)
         {
-            int defenseValue = GenerateRandomNumber(MaxDefenseValue);
+            int defenseValue = RandomNumberGenerator.GenerateRandomNumber(MaxDefenseValue);
             Console.WriteLine("Defense ---> " + defenseValue);
 
             return defenseValue;

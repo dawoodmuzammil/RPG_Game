@@ -38,10 +38,6 @@ namespace RPG_Game
             CPU = new Player( player.Level); // create CPU player
             fileManager.InsertPlayerJSON(CPU, true);
 
-            //Console.WriteLine("Game Set up. You are playing against " + CPU.username);
-            Console.WriteLine("THE GAME IS SET!!");
-            Console.WriteLine(username + " (" + userCharacter.CharName + ")" + " vs. " + CPU.Username + " (Aladin)\n");
-
             // start battle
             Battle battle = new Battle( player, CPU);
         }
@@ -67,6 +63,7 @@ namespace RPG_Game
                         LoadGame();
                         break;
                     case (3):
+                        Console.WriteLine("\nThank you for playing Borda's RPG game. Hope to see you soon...\n");
                         Environment.Exit(0);
                         break;
                     default:
@@ -102,10 +99,11 @@ namespace RPG_Game
             int input = 0;
             do
             {
-                Console.WriteLine("Please character would you like to play with (enter the number 1-4): ");
+                Console.WriteLine("\nPlease character would you like to play with (enter the number 1-4): ");
                 Console.WriteLine("1. Aladin\n2. Tarzan\n3. Spider-Man\n4. Batman");
-                Console.Write("Your option: ");
+                Console.Write("\nYour option: ");
                 input = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
 
                 switch (input)
                 {
