@@ -10,7 +10,8 @@ namespace RPG_Game
     class FileManager
     {
         // properties
-
+        private const string filepathPlayer = @"../../../currentPlayer.json";
+        private const string filepathCPU = @"../../../currentCPU.json";
         // constructor
 
         /*
@@ -19,11 +20,12 @@ namespace RPG_Game
          */ 
         public void InsertPlayerJSON( Player player, bool CPU)
         {
-            string filepath = "";
+            
+            string filepath = "";            
             if (CPU)
-                filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
+                filepath = filepathCPU;
             else
-                filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
+                filepath = filepathPlayer;
             string strJSON = JsonConvert.SerializeObject(player, Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects,
@@ -37,14 +39,12 @@ namespace RPG_Game
         {
             Console.WriteLine("Loading game...");
 
-            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
-            string jsonOutput = File.ReadAllText(filepath);
+            string jsonOutput = File.ReadAllText(filepathPlayer);
             Player player = JsonConvert.DeserializeObject<Player>(jsonOutput, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
             });
-
-            string filepathCPU = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
+            
             string jsonOutputCPU = File.ReadAllText(filepathCPU);
             Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU, new JsonSerializerSettings
             {
@@ -66,10 +66,8 @@ namespace RPG_Game
 
         public void DeleteAllPlayers()
         {
-            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentPlayer.json";
-            File.WriteAllText(filepath, string.Empty);
-            filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\currentCPU.json";
-            File.WriteAllText(filepath, string.Empty);
+            File.WriteAllText(filepathPlayer, string.Empty);            
+            File.WriteAllText(filepathCPU, string.Empty);
         }
     }
 }
