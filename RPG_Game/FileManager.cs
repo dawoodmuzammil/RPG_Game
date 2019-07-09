@@ -10,22 +10,24 @@ namespace RPG_Game
     class FileManager
     {
         // properties
-        private const string filepathPlayer = @"../../../currentPlayer.json";
-        private const string filepathCPU = @"../../../currentCPU.json";
-        // constructor
+        private const string FILEPATH_PLAYER = @"../../../currentPlayer.json";
+        private const string FILEPATH_CPU = @"../../../currentCPU.json";
+        
+
+        // methods
 
         /*
          * This method saves the created players in the JSON files. The boolean parameter differentiates 
          * the CPU from the user to save different type of players in their respective paths.
          */ 
-        public void InsertPlayerJSON( Player player, bool CPU)
+        public void InsertPlayerJSON( Player player)
         {
             
             string filepath = "";            
-            if (CPU)
-                filepath = filepathCPU;
-            else
-                filepath = filepathPlayer;
+            if (player is PlayerCPU)
+                filepath = FILEPATH_CPU;
+            else if ( player is PlayerUser)
+                filepath = FILEPATH_PLAYER;
             string strJSON = JsonConvert.SerializeObject(player, Formatting.Indented, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects,
@@ -39,35 +41,45 @@ namespace RPG_Game
         {
             Console.WriteLine("Loading game...");
 
-            string jsonOutput = File.ReadAllText(filepathPlayer);
-            Player player = JsonConvert.DeserializeObject<Player>(jsonOutput, new JsonSerializerSettings
+            // deserialize player info
+            string jsonOutput = File.ReadAllText(FILEPATH_PLAYER);
+            Player user = JsonConvert.DeserializeObject<Player>(jsonOutput, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
             });
-            
-            string jsonOutputCPU = File.ReadAllText(filepathCPU);
+
+            // deserialize CPU info
+            string jsonOutputCPU = File.ReadAllText(FILEPATH_CPU);
             Player CPU = JsonConvert.DeserializeObject<Player>(jsonOutputCPU, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
             });
 
-            Console.WriteLine("Game loaded successfully. Here's the summary.\n");
-            Console.WriteLine("Player 1: " + player.Username + "\nPoints: " + player.Points+ "\nHealth: " + player.Character.HpValue + "\nLevel: " + CPU.Character.Level);
-            Console.WriteLine("\nCPU: " + CPU.Username + "\nPoints: " + CPU.Points+ "\nHealth: " + CPU.Character.HpValue + "\nLevel: " + CPU.Character.Level);
-            Player[] playerArr = new Player[2];
-            playerArr[0] = player;
-            playerArr[1] = CPU;
+            // print info
+            GameLoadSuccessMessage(user, CPU);
 
-            Console.WriteLine();            
-            Console.WriteLine("\n*************************************************************************************************\n");
+            // populate array and return the players to start battle
+            Player[] playerArr = new Player[2];
+            playerArr[0] = user;
+            playerArr[1] = CPU;            
 
             return playerArr;
         }
 
+        public void GameLoadSuccessMessage( Player user, Player CPU)
+        {
+            Console.WriteLine("Game loaded successfully. Here's the summary.\n");
+            Console.WriteLine("Player 1: " + user.Username + "\nPoints: " + user.Points + "\nHealth: " + user.Character.HpValue + "\nLevel: " + user.Character.Level);
+            Console.WriteLine("\nCPU: " + CPU.Username + "\nPoints: " + CPU.Points + "\nHealth: " + CPU.Character.HpValue + "\nLevel: " + CPU.Character.Level);
+
+            Console.WriteLine();
+            Console.WriteLine("\n*************************************************************************************************\n");
+        }
+
         public void DeleteAllPlayers()
         {
-            File.WriteAllText(filepathPlayer, string.Empty);            
-            File.WriteAllText(filepathCPU, string.Empty);
+            File.WriteAllText(FILEPATH_PLAYER, string.Empty);            
+            File.WriteAllText(FILEPATH_CPU, string.Empty);
         }
     }
 }

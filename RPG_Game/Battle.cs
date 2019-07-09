@@ -13,8 +13,8 @@ namespace RPG_Game
         public Battle( Player p1, Player p2)
         {
             fileManager = new FileManager();
-            fileManager.InsertPlayerJSON(p1, false);
-                fileManager.InsertPlayerJSON(p2, true);
+            fileManager.InsertPlayerJSON(p1);
+            fileManager.InsertPlayerJSON(p2);
            
             Console.WriteLine("THE BATTLE IS SET!!");
             Console.WriteLine(p1.Username+ " (" + p1.Character.CharName + ")" + " vs. " + p2.Username + " (" + p2.Character.CharName + ")\n");
@@ -43,8 +43,8 @@ namespace RPG_Game
                     turn = !turn;
                     AttackByCPU(p1, p2);
                 }
-                fileManager.InsertPlayerJSON(p1, false);
-                fileManager.InsertPlayerJSON(p2, true);
+                fileManager.InsertPlayerJSON(p1);
+                fileManager.InsertPlayerJSON(p2);
 
             }
         }
@@ -97,9 +97,8 @@ namespace RPG_Game
 
                     if (p2.Character.IsLost(p2.Character.HpValue)) // checking if CPU's HP is less than 0
                     {
-                        Console.WriteLine("\n\nCONGRATULATIONS. You have won the first round. You have earned " + p1.AwardPoints(p1.Character.HpValue) + " points.");
-                        Console.WriteLine("You will now be put into the battlefield with a tougher opponent. Your HP is now set to " + p1.Character.HpValue + "\n\n");
 
+                        PrintRoundWinMessage(p1);
                         Spawn(p1, p1.Level);
                     }
                 }
@@ -115,15 +114,21 @@ namespace RPG_Game
             } while (input != 1 && input != 0);
         }
 
-        public void PrintHPStatus(Player p1, Player p2)
+        public void PrintRoundWinMessage(Player user)
+        {
+            Console.WriteLine("\n\nCONGRATULATIONS. You have won this round. You have earned " + user.AwardPoints(p1.Character.HpValue) + " points.");
+            Console.WriteLine("You will now be put into the battlefield with a tougher opponent. Your HP is now set to " + user.Character.HpValue + "\n\n");
+        }
+
+        public void PrintHPStatus(Player user, Player CPU)
         {
             Console.WriteLine();
             Indent("====================");
             Indent("==== HP STATUS =====");
             Indent("====================");
 
-            Indent(p1.Username + " ---> " + p1.Character.HpValue);
-            Indent(p2.Username + " ---> " + p2.Character.HpValue);
+            Indent(user.Username + " ---> " + user.Character.HpValue);
+            Indent(CPU.Username + " ---> " + CPU.Character.HpValue);
         }
 
         // method where CPU attacks the player
@@ -151,8 +156,7 @@ namespace RPG_Game
 
         public void Spawn(Player p1, int level)
         {
-            Player spawnedPlayer = new PlayerCPU( level); // create CPU player
-            Console.WriteLine("LEVEL OF CPU ---> " + spawnedPlayer.Level);
+            Player spawnedPlayer = new PlayerCPU( level); // create CPU player            
             Battle battle = new Battle(p1, spawnedPlayer);  
         }
 
@@ -166,7 +170,6 @@ namespace RPG_Game
             {
                 Console.WriteLine("\n*************************************************************************************************\n");
                 Console.WriteLine("It's your turn. Please select your next move.");
-
             }
             else
             {

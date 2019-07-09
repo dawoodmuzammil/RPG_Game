@@ -7,12 +7,12 @@ using System.Linq;
 namespace RPG_Game
 {
     public class GameFactory
-    {        
+    {
         // properties
-        private Player player;
+        private Player user;
         private Player CPU;
         private FileManager fileManager;
-        private int initialLevel = 1;
+        private const int INITIAL_LEVEL = 1;
 
         // constructor
         public GameFactory()
@@ -33,14 +33,15 @@ namespace RPG_Game
 
             string username = GetUsername(); // get username from user
             Character userCharacter = GetUserCharacter();
-            player = new PlayerUser(username, userCharacter); // create user's player
-            fileManager.InsertPlayerJSON(player, false);
+            user = new PlayerUser(username, userCharacter); // create user's player
+           
+            CPU = new PlayerCPU(user.Level); // create CPU player            
 
-            CPU = new PlayerCPU( player.Level); // create CPU player
-            fileManager.InsertPlayerJSON(CPU, true);
+            // save players
+            SaveGame(user, CPU);
 
             // start battle
-            Battle battle = new Battle( player, CPU);
+            Battle battle = new Battle(user, CPU);
         }
 
         public void ShowMainMenu()
@@ -55,7 +56,7 @@ namespace RPG_Game
 
                 Console.WriteLine();
 
-                switch(input)
+                switch (input)
                 {
                     case (1):
                         InitializeNewGame();
@@ -73,6 +74,13 @@ namespace RPG_Game
                 }
             } while (input != 3);
 
+
+        }
+
+        public void SaveGame(Player user, Player CPU)
+        {
+            fileManager.InsertPlayerJSON(user);
+            fileManager.InsertPlayerJSON(CPU);
 
         }
 
@@ -109,13 +117,13 @@ namespace RPG_Game
                 switch (input)
                 {
                     case (1):
-                        return new Aladin(initialLevel);
+                        return new Aladin(INITIAL_LEVEL);
                     case (2):
-                        return new Tarzan(initialLevel);
+                        return new Tarzan(INITIAL_LEVEL);
                     case (3):
-                        return new Spiderman(initialLevel);
+                        return new Spiderman(INITIAL_LEVEL);
                     case (4):
-                        return new Batman(initialLevel);
+                        return new Batman(INITIAL_LEVEL);
                     default:
                         Console.WriteLine("\nInvalid selection...\n");
                         continue;
