@@ -1,22 +1,22 @@
 {
   "$type": "RPG_Game.PlayerCPU, RPG_Game",
-  "Username": "CPU_Marin",
-  "Level": 2,
+  "Username": "CPU_Silvia",
+  "Level": 1,
   "Points": 0,
   "Character": {
-    "$type": "RPG_Game.Spiderman, RPG_Game",
-    "HpValue": 64,
+    "$type": "RPG_Game.Batman, RPG_Game",
+    "HpValue": 6,
     "Level": 1,
-    "CharName": "Spider-Man",
-    "MaxAttackValue": 20,
-    "MaxDefenseValue": 20,
+    "CharName": "Batman",
+    "MaxAttackValue": 10,
+    "MaxDefenseValue": 10,
     "AttackSkills": [
-      "Web Attack",
-      "Spin Cycle"
+      "Summon Bats",
+      "Batarang"
     ],
     "DefenseSkills": [
-      "Disarm",
-      "Wall Run"
+      "Heal",
+      "Roll Escape"
     ]
   }
 }

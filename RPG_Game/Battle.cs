@@ -82,7 +82,7 @@ namespace RPG_Game
                     attackMove = GetAttackMove();
 
                     // ask again if input invalid
-                    while ( attackMove < 1 && attackMove > 2)
+                    while ( attackMove < 1 || attackMove > 2)
                     {
                         Console.WriteLine("\nInvalid selection. Please try again.\n");
                         DisplayAttackMoves(attacker);
@@ -98,9 +98,34 @@ namespace RPG_Game
 
             //DisplayMoveReport(option, attackValue, defenseValue, effectiveness, p1, p2);
 
-            defender.Character.HpValue -= damage; // decrease CPU's HP
+            defender.Character.HpValue -= damage; // decrease CPU's HP            
 
             PrintHPStatus(attacker, defender); // print hp status
+
+            CheckForDefeat(defender, attacker);
+        }
+
+        public void CheckForDefeat( Player defender, Player attacker)
+        {            
+            if ( defender.Character.IsLost())
+            {
+                if ( defender is PlayerCPU)
+                {
+                    PrintRoundWinMessage(attacker);
+                    Spawn(attacker, attacker.Level);
+                }
+                else
+                {
+                    GameOver();
+                }
+
+            }
+        }
+
+        public void GameOver()
+        {
+            Console.WriteLine("\n\nG   A   M   E      O   V   E   R\n\n"); // display message
+            fileManager.DeleteAllPlayers(); // clear JSON files
         }
 
         public int CalculateDamage( Player attacker, Player defender, int attackMove)
@@ -111,8 +136,6 @@ namespace RPG_Game
             return (attackValue - defenseValue);
         }
 
-
-        // NAME TO BE CHANGED
         public int GetAttackChoice()
         {
             Console.WriteLine("1. Attack");

@@ -70,9 +70,9 @@ namespace RPG_Game
             return defenseValue;
         }
 
-        public bool IsLost( int CurrentHP)
+        public bool IsLost()
         {
-            if (CurrentHP <= 0)
+            if (HpValue <= 0)
                 return true;
             return false;
         }
