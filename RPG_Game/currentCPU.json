@@ -5,7 +5,7 @@
   "Points": 0,
   "Character": {
     "$type": "RPG_Game.Spiderman, RPG_Game",
-    "HpValue": 100,
+    "HpValue": 64,
     "Level": 1,
     "CharName": "Spider-Man",
     "MaxAttackValue": 20,

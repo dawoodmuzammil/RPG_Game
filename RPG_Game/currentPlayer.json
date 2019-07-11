@@ -5,7 +5,7 @@
   "Points": 122,
   "Character": {
     "$type": "RPG_Game.Tarzan, RPG_Game",
-    "HpValue": 90,
+    "HpValue": 0,
     "Level": 1,
     "CharName": "Tarzan",
     "MaxAttackValue": 10,
