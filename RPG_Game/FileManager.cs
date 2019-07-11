@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace RPG_Game
 {
-    class FileManager
+    public class FileManager
     {
         // properties
         private const string FILEPATH_PLAYER = @"../../../currentPlayer.json";
@@ -64,6 +64,23 @@ namespace RPG_Game
             playerArr[1] = CPU;            
 
             return playerArr;
+        }
+
+        public string[] ReadRandomNames()
+        {
+            string filepath = @"../../../randomNames.txt";            
+
+            List<string> lines = File.ReadAllLines(filepath).ToList();
+
+            string[] names = new string[12];
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
+                names[i] = lines[rand];                
+            }
+
+            return names;
         }
 
         public void GameLoadSuccessMessage( Player user, Player CPU)

@@ -26,27 +26,8 @@ namespace RPG_Game
         // ============================================ //
         //              INITIALIZING GAME               //
         // ============================================ //
-        public void InitializeNewGame()
-        {
-
-            Console.WriteLine("Initializing new game. Please wait...");
-
-            string username = GetUsername(); // get username from user
-            Character userCharacter = GetUserCharacter();
-            user = new PlayerUser(username, userCharacter); // create user's player
-           
-            CPU = new PlayerCPU(user.Level); // create CPU player            
-
-            // save players
-            SaveGame(user, CPU);
-
-            // start battle
-            Battle battle = new Battle(user, CPU);
-        }
-
         public void ShowMainMenu()
         {
-
             int input;
             do
             {
@@ -73,9 +54,28 @@ namespace RPG_Game
                         break;
                 }
             } while (input != 3);
-
-
         }
+
+
+        public void InitializeNewGame()
+        {
+
+            Console.WriteLine("Initializing new game. Please wait...");
+
+            string username = GetUsername(); // get username from user
+            Character userCharacter = GetUserCharacter();
+            user = new PlayerUser(username, userCharacter); // create user's player
+           
+            CPU = new PlayerCPU(user.Level); // create CPU player            
+
+            // save players
+            SaveGame(user, CPU);
+
+            // start battle
+            Battle battle = new Battle(user, CPU);
+        }
+
+        
 
         public void SaveGame(Player user, Player CPU)
         {
@@ -112,7 +112,7 @@ namespace RPG_Game
                 Console.WriteLine("1. Aladin\n2. Tarzan\n3. Spider-Man\n4. Batman");
                 Console.Write("\nYour option: ");
                 input = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
+                //Console.Clear();
 
                 switch (input)
                 {

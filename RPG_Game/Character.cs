@@ -49,13 +49,6 @@ namespace RPG_Game
             HpValue = Val + HpValue;
         }
 
-        //public virtual int Attack()
-        //{
-        //    int attackValue = GenerateRandomNumber(MaxAttackValue);
-        //    Console.WriteLine("Attack ---> " + attackValue);
-        //    return attackValue;
-        //}
-
         public virtual int Attack(int option)
         {
             int attackvalue = RandomNumberGenerator.GenerateRandomNumber(MaxAttackValue);

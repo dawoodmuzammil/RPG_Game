@@ -8,10 +8,17 @@ namespace RPG_Game
 {
     public class PlayerCPU : Player
     {
+        private FileManager fileManager;
+        private string[] names;
+        
         public PlayerCPU(int UserLevel)
         {
+            fileManager = new FileManager();
+
+            names = fileManager.ReadRandomNames();
             
-            Username = "CPU_" + GenerateRandomName();
+            Username = "CPU_" + names[RandomNumberGenerator.GenerateRandomNumber(names.Length)];
+            //Username = "CPU_" + names[0];
             Points = 0;
             Level = UserLevel;
 

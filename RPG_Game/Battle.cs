@@ -7,7 +7,7 @@ namespace RPG_Game
     public class Battle
     {
         // properties
-        FileManager fileManager;
+        private FileManager fileManager;
 
         // constructor
         public Battle( Player p1, Player p2)
