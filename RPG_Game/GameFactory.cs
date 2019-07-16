@@ -11,12 +11,15 @@ namespace RPG_Game
         // properties
         private Player user;
         private Player CPU;
+        CharacterFactory characterFactory;
         private FileManager fileManager;
         private const int INITIAL_LEVEL = 1;
+        private Stack<string> names;
 
         // constructor
         public GameFactory()
         {
+            characterFactory = new CharacterFactory();
             fileManager = new FileManager();            
         }
 
@@ -62,7 +65,8 @@ namespace RPG_Game
             Console.WriteLine("Initializing new game. Please wait...");
 
             string username = GetUsername(); // get username from user
-            Character userCharacter = GetUserCharacter();
+            int userCharacterChoice = GetUserCharacterChoice(); // get user choice            
+            Character userCharacter = characterFactory.GetCharacter(userCharacterChoice, INITIAL_LEVEL); // create user character
             user = new PlayerUser(username, userCharacter); // create user's player
            
             CPU = new PlayerCPU(user.Level); // create CPU player            
@@ -102,7 +106,7 @@ namespace RPG_Game
         }
 
 
-        public Character GetUserCharacter()
+        public int GetUserCharacterChoice()
         {
             int input = 0;
             do
@@ -113,23 +117,10 @@ namespace RPG_Game
                 input = Convert.ToInt32(Console.ReadLine());
                 //Console.Clear();
 
-                switch (input)
-                {
-                    case (1):
-                        return new Aladin(INITIAL_LEVEL);
-                    case (2):
-                        return new Tarzan(INITIAL_LEVEL);
-                    case (3):
-                        return new Spiderman(INITIAL_LEVEL);
-                    case (4):
-                        return new Batman(INITIAL_LEVEL);
-                    default:
-                        Console.WriteLine("\nInvalid selection...\n");
-                        continue;
-                }
+                return input;
             
             } while (input != 1 && input != 2 && input != 3 && input != 4);
-            return new Aladin(1);
+            
         }
 
         

@@ -1,22 +1,22 @@
 {
   "$type": "RPG_Game.PlayerCPU, RPG_Game",
-  "Username": "CPU_Joceline",
+  "Username": "CPU_Louella",
   "Level": 2,
   "Points": 0,
   "Character": {
-    "$type": "RPG_Game.Tarzan, RPG_Game",
+    "$type": "RPG_Game.Spiderman, RPG_Game",
     "HpValue": 100,
     "Level": 1,
-    "CharName": "Tarzan",
+    "CharName": "Spider-Man",
     "MaxAttackValue": 20,
     "MaxDefenseValue": 20,
     "AttackSkills": [
-      "Flying Kick",
-      "Great Ape"
+      "Web Attack",
+      "Spin Cycle"
     ],
     "DefenseSkills": [
-      "Eavesdrop",
-      "Cover"
+      "Disarm",
+      "Wall Run"
     ]
   }
 }

@@ -10,45 +10,22 @@ namespace RPG_Game
     {
         private FileManager fileManager;
         private Stack<string> names;
+        private CharacterFactory characterFactory;
         
         public PlayerCPU(int UserLevel)
         {
             fileManager = new FileManager();
+            characterFactory = new CharacterFactory();
 
             names = fileManager.ReadRandomNames();
             
             Username = "CPU_" + names.Pop(); // pop a name from the stack
-            Points = 0;
-            Level = UserLevel;
+            Points = 0; // initial points are set to 0 for every new player
+            Level = UserLevel; // Level of CPU player will be the same as that of the user
 
             // select User's character
             int characterChoice = RandomNumberGenerator.GenerateRandomNumber(4) + 1;
-
-            switch (characterChoice)
-            {
-                case (1):
-                    Character = new Aladin(Level);
-                    break;
-                case (2):
-                    Character = new Tarzan(Level);
-                    break;
-                case (3):
-                    Character = new Spiderman(Level);
-                    break;
-                case (4):
-                    Character = new Batman(Level);
-                    break;
-            }
-        }
-
-        public string GenerateRandomName()
-        {
-            string filepath = @"E:\Dawood\Borda Internship\Tasks\Task 1\RPG_Game\RPG_Game\randomNames.txt";
-
-            List<string> lines = File.ReadAllLines(filepath).ToList();
-            int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
-
-            return lines[rand];
+            Character = characterFactory.GetCharacter(characterChoice, Level);
         }
     }
 }
