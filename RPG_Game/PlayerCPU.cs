@@ -9,7 +9,7 @@ namespace RPG_Game
     public class PlayerCPU : Player
     {
         private FileManager fileManager;
-        private string[] names;
+        private Stack<string> names;
         
         public PlayerCPU(int UserLevel)
         {
@@ -17,8 +17,7 @@ namespace RPG_Game
 
             names = fileManager.ReadRandomNames();
             
-            Username = "CPU_" + names[RandomNumberGenerator.GenerateRandomNumber(names.Length)];
-            //Username = "CPU_" + names[0];
+            Username = "CPU_" + names.Pop(); // pop a name from the stack
             Points = 0;
             Level = UserLevel;
 

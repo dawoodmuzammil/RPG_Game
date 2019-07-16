@@ -12,6 +12,7 @@ namespace RPG_Game
         // properties
         private const string FILEPATH_PLAYER = @"../../../currentPlayer.json";
         private const string FILEPATH_CPU = @"../../../currentCPU.json";
+        private const int STACK_SIZE = 12;
         
 
         // methods
@@ -66,18 +67,19 @@ namespace RPG_Game
             return playerArr;
         }
 
-        public string[] ReadRandomNames()
+        public Stack<string> ReadRandomNames()
         {
             string filepath = @"../../../randomNames.txt";            
 
             List<string> lines = File.ReadAllLines(filepath).ToList();
+           
+            Stack<string> names = new Stack<string>();
 
-            string[] names = new string[12];
-
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 0; i < STACK_SIZE; i++)
             {
                 int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
-                names[i] = lines[rand];                
+                string nameToSave = lines[rand];
+                names.Push(nameToSave);                
             }
 
             return names;

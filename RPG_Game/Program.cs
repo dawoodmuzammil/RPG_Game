@@ -7,6 +7,7 @@ namespace RPG_Game
         static void Main(string[] args)
         {           
             GameFactory game = new GameFactory();
+            game.ShowMainMenu();
             Console.ReadLine();
         }
     }

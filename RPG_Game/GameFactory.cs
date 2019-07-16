@@ -17,8 +17,7 @@ namespace RPG_Game
         // constructor
         public GameFactory()
         {
-            fileManager = new FileManager();
-            ShowMainMenu();
+            fileManager = new FileManager();            
         }
 
         // METHODS
