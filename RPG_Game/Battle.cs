@@ -12,7 +12,7 @@ namespace RPG_Game
         // constructor
         public Battle( Player p1, Player p2)
         {
-            fileManager = new FileManager();
+            fileManager = FileManager.getInstance();
             fileManager.InsertPlayerJSON(p1);
             fileManager.InsertPlayerJSON(p2);
            

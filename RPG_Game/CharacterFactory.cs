@@ -19,7 +19,7 @@ namespace RPG_Game
                 case (4):
                     return new Batman(level);
                 default:
-                    return new Aladin(level);
+                    return null;
             }
         }
     }

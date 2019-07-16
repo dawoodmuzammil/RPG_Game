@@ -9,19 +9,33 @@ namespace RPG_Game
 {
     public class FileManager
     {
+        private static FileManager instance = new FileManager();
+
         // properties
         private const string FILEPATH_PLAYER = @"../../../currentPlayer.json";
         private const string FILEPATH_CPU = @"../../../currentCPU.json";
         private const int STACK_SIZE = 12;
-        private Stack<string> names;
+        private static Stack<string> names;
+
         
 
+        // constructor
+        private FileManager()
+        {            
+            names = ReadRandomNames();
+        }
+
         // methods
+        public static FileManager getInstance()
+        {
+            
+            return instance;
+        }
 
         /*
          * This method saves the created players in the JSON files. The boolean parameter differentiates 
          * the CPU from the user to save different type of players in their respective paths.
-         */ 
+         */
         public void InsertPlayerJSON( Player player)
         {
             
@@ -73,18 +87,26 @@ namespace RPG_Game
             string filepath = @"../../../randomNames.txt";
             Console.WriteLine("FILE OPENED");
             List<string> lines = File.ReadAllLines(filepath).ToList();
-           
-            //Stack<string> names = new Stack<string>();
+
+            Stack<string> names = new Stack<string>();
 
             for (int i = 0; i < STACK_SIZE; i++)
             {
                 int rand = RandomNumberGenerator.GenerateRandomNumber(lines.Count);
                 string nameToSave = lines[rand];
-                Names.Push(nameToSave);                
+                names.Push(nameToSave);
+                Console.WriteLine(nameToSave);
             }
 
-            return Names;
+            return names;
         }
+
+        public string GetCPUName()
+        {
+            return names.Pop();
+        }
+
+
 
         public void GameLoadSuccessMessage( Player user, Player CPU)
         {

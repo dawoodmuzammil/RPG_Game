@@ -1,8 +1,8 @@
 {
   "$type": "RPG_Game.PlayerUser, RPG_Game",
-  "Username": "DAWOOD",
+  "Username": "dawooooood",
   "Level": 2,
-  "Points": 116,
+  "Points": 170,
   "Character": {
     "$type": "RPG_Game.Tarzan, RPG_Game",
     "HpValue": 90,

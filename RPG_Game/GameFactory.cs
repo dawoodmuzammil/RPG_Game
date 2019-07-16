@@ -20,7 +20,7 @@ namespace RPG_Game
         public GameFactory()
         {
             characterFactory = new CharacterFactory();
-            fileManager = new FileManager();            
+            fileManager = FileManager.getInstance();            
         }
 
         // METHODS

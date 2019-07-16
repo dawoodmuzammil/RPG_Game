@@ -1,22 +1,22 @@
 {
   "$type": "RPG_Game.PlayerCPU, RPG_Game",
-  "Username": "CPU_Louella",
+  "Username": "CPU_Olympia",
   "Level": 2,
   "Points": 0,
   "Character": {
-    "$type": "RPG_Game.Spiderman, RPG_Game",
+    "$type": "RPG_Game.Aladin, RPG_Game",
     "HpValue": 100,
     "Level": 1,
-    "CharName": "Spider-Man",
+    "CharName": "Aladin",
     "MaxAttackValue": 20,
     "MaxDefenseValue": 20,
     "AttackSkills": [
-      "Web Attack",
-      "Spin Cycle"
+      "Genie Help",
+      "Power Punch"
     ],
     "DefenseSkills": [
-      "Disarm",
-      "Wall Run"
+      "Duck",
+      "Steal Power"
     ]
   }
 }
